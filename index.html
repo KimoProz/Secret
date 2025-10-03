@@ -55,11 +55,6 @@
             box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
         
-        .nav-pills .nav-link.active {
-            background: var(--gradient);
-            border-radius: 50px;
-        }
-        
         .student-item {
             background: rgba(67, 97, 238, 0.1);
             border-radius: 10px;
@@ -117,17 +112,6 @@
         
         .record-item:hover {
             transform: translateX(5px);
-        }
-        
-        .teacher-card {
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        
-        .teacher-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .floating-btn {
@@ -189,221 +173,70 @@
                     <h1 class="display-5 fw-bold">
                         <i class="fas fa-graduation-cap me-2"></i>EduShare
                     </h1>
-                    <p class="lead mb-0">نظام رفع الملفات التعليمي المتكامل</p>
+                    <p class="lead mb-0">نظام رفع الملفات التعليمي - صفحة الأم</p>
                 </div>
             </div>
         </div>
 
-        <!-- التنقل بين الأقسام -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <ul class="nav nav-pills justify-content-center mb-4" id="mainTabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#admin-panel" data-bs-toggle="pill">
-                            <i class="fas fa-user-tie me-2"></i>لوحة المعلم
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#upload-page" data-bs-toggle="pill">
-                            <i class="fas fa-cloud-upload-alt me-2"></i>رفع الملفات
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#global-records" data-bs-toggle="pill">
-                            <i class="fas fa-history me-2"></i>السجلات العامة
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- محتوى الأقسام -->
-        <div class="tab-content">
-            <!-- لوحة المعلم -->
-            <div class="tab-pane fade show active" id="admin-panel">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="glass-card">
-                            <div class="card-header header-gradient py-3">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-user-tie me-2"></i>لوحة المعلم (Admin Panel)
-                                </h4>
-                            </div>
-                            <div class="card-body p-4">
-                                <form id="teacher-form">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="teacher-name" class="form-label">اسم المعلم</label>
-                                            <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف صغيرة وأرقام)" required pattern="[a-z0-9]+">
-                                            <div class="form-text">يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام فقط</div>
-                                        </div>
-                                        
-                                        <div class="col-md-6 mb-3">
-                                            <label for="teacher-subject" class="form-label">اسم المادة</label>
-                                            <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="bot-token" class="form-label">
-                                            توكن البوت
-                                            <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/QVBdIThA3II?si=AEgSzy1UqltRykeG', '_blank')"></i>
-                                        </label>
-                                        <input type="text" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="teacher-id" class="form-label">
-                                            ID الحساب
-                                            <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/Xl3blDReCzs?si=JJ6qdIVyYMhT2VYL', '_blank')"></i>
-                                        </label>
-                                        <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary w-100 py-3">
-                                        <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
-                                    </button>
-                                </form>
+        <!-- لوحة المعلم -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="glass-card">
+                    <div class="card-header header-gradient py-3">
+                        <h4 class="mb-0">
+                            <i class="fas fa-user-tie me-2"></i>لوحة المعلم (Admin Panel)
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="teacher-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="teacher-name" class="form-label">اسم المعلم</label>
+                                    <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف صغيرة وأرقام)" required pattern="[a-z0-9]+">
+                                    <div class="form-text">يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام فقط</div>
+                                </div>
                                 
-                                <div id="success-message" class="alert alert-success mt-4 p-3 rounded-3 hidden">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-check-circle fa-2x me-3"></i>
-                                        <div>
-                                            <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
-                                            <p class="mb-2" id="message-text">البوت يعمل الآن بنجاح ✅</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-3">
-                                        <strong>رابط صفحة الرفع:</strong>
-                                        <div class="teacher-link mt-2 p-3 bg-light rounded-2" id="teacher-link"></div>
-                                    </div>
-                                    <div class="mt-2 text-muted">
-                                        <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
-                                    </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="teacher-subject" class="form-label">اسم المادة</label>
+                                    <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- صفحة رفع الملفات للطلاب -->
-            <div class="tab-pane fade" id="upload-page">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="glass-card mb-4">
-                            <div class="card-header header-gradient py-3">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-cloud-upload-alt me-2"></i>
-                                    <span id="page-title">رفع الملفات</span>
-                                    <span id="subject-title" class="badge bg-light text-dark ms-2"></span>
-                                </h4>
+                            
+                            <div class="mb-3">
+                                <label for="bot-token" class="form-label">
+                                    توكن البوت
+                                    <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/QVBdIThA3II?si=AEgSzy1UqltRykeG', '_blank')"></i>
+                                </label>
+                                <input type="text" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
                             </div>
-                            <div class="card-body p-4">
-                                <form id="upload-form">
-                                    <!-- أسماء الطلاب -->
-                                    <div class="mb-4">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <label class="form-label fw-bold">أسماء الطلاب</label>
-                                            <button type="button" class="btn btn-sm btn-primary" onclick="addStudent()">
-                                                <i class="fas fa-plus me-1"></i>إضافة طالب
-                                            </button>
-                                        </div>
-                                        <div id="students-container">
-                                            <div class="student-item">
-                                                <input type="text" class="form-control" placeholder="اسم الطالب الأول" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-text">يمكنك إضافة حتى 10 طلاب كحد أقصى</div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="student-group" class="form-label">الجروب</label>
-                                            <input type="text" class="form-control" id="student-group" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 mb-3">
-                                            <label for="student-section" class="form-label">السكشن</label>
-                                            <input type="text" class="form-control" id="student-section" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="student-comment" class="form-label">تعليق الطالب</label>
-                                        <textarea class="form-control" id="student-comment" rows="3" placeholder="أدخل تعليقك هنا (اختياري)"></textarea>
-                                    </div>
-                                    
-                                    <!-- رفع الملف -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-bold">رفع الملف</label>
-                                        <div class="upload-area" id="upload-area">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                            <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
-                                            <p class="text-muted mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
-                                        </div>
-                                        <input type="file" id="file-input" class="hidden" accept=".pdf,.xls,.xlsx,.ppt,.pptx,.doc,.docx,.png,.jpg,.jpeg,.zip,.py,.cpp,.java">
-                                        <div class="file-info hidden" id="file-info">
-                                            <div class="d-flex align-items-center">
-                                                <div id="file-preview" class="me-3"></div>
-                                                <div class="flex-grow-1">
-                                                    <div class="d-flex justify-content-between align-items-start">
-                                                        <div>
-                                                            <div id="file-name" class="fw-bold h6 mb-1"></div>
-                                                            <div id="file-size" class="text-muted small mb-2"></div>
-                                                            <span id="file-type-badge" class="file-type-badge"></span>
-                                                        </div>
-                                                        <button type="button" class="btn btn-sm btn-danger" onclick="removeFile()">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary w-100 py-3" id="submit-btn">
-                                        <i class="fas fa-paper-plane me-2"></i>إرسال الملف
-                                    </button>
-                                </form>
-                                
-                                <div id="upload-status" class="mt-3"></div>
+                            
+                            <div class="mb-3">
+                                <label for="teacher-id" class="form-label">
+                                    ID الحساب
+                                    <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/Xl3blDReCzs?si=JJ6qdIVyYMhT2VYL', '_blank')"></i>
+                                </label>
+                                <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- السجلات الشخصية -->
-                    <div class="col-lg-4">
-                        <div class="glass-card">
-                            <div class="card-header header-gradient py-3">
-                                <h5 class="mb-0">
-                                    <i class="fas fa-history me-2"></i>سجلاتك الشخصية
-                                </h5>
-                            </div>
-                            <div class="card-body p-3">
-                                <div id="personal-records" class="global-records">
-                                    <p class="text-center text-muted my-3">لا توجد سجلات سابقة</p>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
+                            </button>
+                        </form>
+                        
+                        <div id="success-message" class="alert alert-success mt-4 p-3 rounded-3 hidden">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle fa-2x me-3"></i>
+                                <div>
+                                    <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
+                                    <p class="mb-2" id="message-text">البوت يعمل الآن بنجاح ✅</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- السجلات العامة -->
-            <div class="tab-pane fade" id="global-records">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="glass-card">
-                            <div class="card-header header-gradient py-3">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-globe me-2"></i>السجلات العامة
-                                </h4>
+                            <div class="mt-3">
+                                <strong>رابط صفحة الرفع:</strong>
+                                <div class="teacher-link mt-2 p-3 bg-light rounded-2" id="teacher-link"></div>
                             </div>
-                            <div class="card-body p-4">
-                                <div class="row" id="global-records-container">
-                                    <p class="text-center text-muted my-4">جاري تحميل السجلات...</p>
-                                </div>
+                            <div class="mt-2 text-muted">
+                                <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
                             </div>
                         </div>
                     </div>
@@ -428,62 +261,10 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         
-        // متغيرات عامة
-        let currentTeacher = null;
-        let selectedFile = null;
-        let studentId = null;
-        let studentCount = 1;
-        const maxStudents = 10;
-        
         // عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // التحقق من وجود معلم في الرابط
-            const urlParams = new URLSearchParams(window.location.search);
-            const teacherName = urlParams.get('teacher');
-            
-            if (teacherName) {
-                loadTeacherPage(teacherName);
-                document.querySelector('a[href="#upload-page"]').click();
-            }
-            
             // إعداد استمارة المعلم
             document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
-            
-            // إعداد استمارة الرفع
-            document.getElementById('upload-form').addEventListener('submit', handleFileUpload);
-            
-            // إعداد منطقة الرفع
-            document.getElementById('upload-area').addEventListener('click', () => {
-                document.getElementById('file-input').click();
-            });
-            
-            document.getElementById('file-input').addEventListener('change', handleFileSelect);
-            
-            // إعداد سحب وإفلات الملفات
-            const uploadArea = document.getElementById('upload-area');
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#3a0ca3';
-                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.15)';
-            });
-            
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.style.borderColor = '#4361ee';
-                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
-            });
-            
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#4361ee';
-                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
-                
-                if (e.dataTransfer.files.length) {
-                    handleFileSelect({ target: { files: e.dataTransfer.files } });
-                }
-            });
-            
-            // تحميل السجلات العامة
-            loadGlobalRecords();
         });
         
         // معالجة إدخال بيانات المعلم
@@ -560,409 +341,9 @@
             });
         }
         
-        // تحميل صفحة المعلم
-        function loadTeacherPage(teacherName) {
-            database.ref('teachers/' + teacherName).once('value')
-            .then(snapshot => {
-                if (snapshot.exists()) {
-                    currentTeacher = snapshot.val();
-                    
-                    // تحديث عنوان الصفحة
-                    document.getElementById('page-title').textContent = `رفع الملفات لمادة ${currentTeacher.subject}`;
-                    document.getElementById('subject-title').textContent = currentTeacher.subject;
-                    
-                    // إنشاء معرف فريد للطالب إذا لم يكن موجود
-                    if (!localStorage.getItem('studentId')) {
-                        studentId = 'student_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                        localStorage.setItem('studentId', studentId);
-                    } else {
-                        studentId = localStorage.getItem('studentId');
-                    }
-                    
-                    // تحميل السجلات الشخصية
-                    loadPersonalRecords(teacherName);
-                } else {
-                    alert('لم يتم العثور على صفحة المعلم المطلوبة.');
-                    document.querySelector('a[href="#admin-panel"]').click();
-                }
-            })
-            .catch(error => {
-                console.error('Error loading teacher:', error);
-                alert('حدث خطأ أثناء تحميل صفحة المعلم.');
-                document.querySelector('a[href="#admin-panel"]').click();
-            });
-        }
-        
-        // إضافة طالب جديد
-        function addStudent() {
-            if (studentCount >= maxStudents) {
-                alert(`لا يمكن إضافة أكثر من ${maxStudents} طلاب`);
-                return;
-            }
-            
-            studentCount++;
-            const container = document.getElementById('students-container');
-            const newStudent = document.createElement('div');
-            newStudent.className = 'student-item';
-            newStudent.innerHTML = `
-                <div class="d-flex align-items-center">
-                    <input type="text" class="form-control me-2" placeholder="اسم الطالب ${studentCount}" required>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="removeStudent(this)">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-            container.appendChild(newStudent);
-        }
-        
-        // إزالة طالب
-        function removeStudent(button) {
-            if (studentCount <= 1) {
-                alert('يجب أن يكون هناك طالب واحد على الأقل');
-                return;
-            }
-            
-            button.closest('.student-item').remove();
-            studentCount--;
-        }
-        
-        // معالجة اختيار الملف
-        function handleFileSelect(e) {
-            const file = e.target.files[0];
-            if (file) {
-                selectedFile = file;
-                
-                // عرض معلومات الملف
-                document.getElementById('file-name').textContent = file.name;
-                document.getElementById('file-size').textContent = formatFileSize(file.size);
-                
-                // عرض نوع الملف
-                const fileType = getFileType(file);
-                document.getElementById('file-type-badge').textContent = fileType;
-                
-                // عرض معاينة إذا كان ملف صورة
-                const previewElement = document.getElementById('file-preview');
-                previewElement.innerHTML = '';
-                
-                if (file.type.startsWith('image/')) {
-                    const img = document.createElement('img');
-                    img.src = URL.createObjectURL(file);
-                    img.style.maxWidth = '80px';
-                    img.style.maxHeight = '80px';
-                    img.style.borderRadius = '10px';
-                    img.onload = () => URL.revokeObjectURL(img.src);
-                    previewElement.appendChild(img);
-                } else {
-                    const icon = document.createElement('i');
-                    icon.className = getFileIcon(file) + ' fa-3x text-muted';
-                    previewElement.appendChild(icon);
-                }
-                
-                document.getElementById('file-info').classList.remove('hidden');
-                document.getElementById('upload-area').classList.add('hidden');
-            }
-        }
-        
-        // الحصول على نوع الملف
-        function getFileType(file) {
-            const ext = file.name.split('.').pop().toLowerCase();
-            const typeMap = {
-                'pdf': 'PDF',
-                'xls': 'Excel',
-                'xlsx': 'Excel',
-                'ppt': 'PowerPoint',
-                'pptx': 'PowerPoint',
-                'doc': 'Word',
-                'docx': 'Word',
-                'png': 'صورة',
-                'jpg': 'صورة',
-                'jpeg': 'صورة',
-                'zip': 'مضغوط',
-                'py': 'Python',
-                'cpp': 'C++',
-                'java': 'Java'
-            };
-            
-            return typeMap[ext] || 'ملف';
-        }
-        
-        // الحصول على أيقونة الملف
-        function getFileIcon(file) {
-            const ext = file.name.split('.').pop().toLowerCase();
-            const iconMap = {
-                'pdf': 'fas fa-file-pdf',
-                'xls': 'fas fa-file-excel',
-                'xlsx': 'fas fa-file-excel',
-                'ppt': 'fas fa-file-powerpoint',
-                'pptx': 'fas fa-file-powerpoint',
-                'doc': 'fas fa-file-word',
-                'docx': 'fas fa-file-word',
-                'png': 'fas fa-file-image',
-                'jpg': 'fas fa-file-image',
-                'jpeg': 'fas fa-file-image',
-                'zip': 'fas fa-file-archive',
-                'py': 'fab fa-python',
-                'cpp': 'fas fa-file-code',
-                'java': 'fab fa-java'
-            };
-            
-            return iconMap[ext] || 'fas fa-file';
-        }
-        
-        // إزالة الملف المختار
-        function removeFile() {
-            selectedFile = null;
-            document.getElementById('file-input').value = '';
-            document.getElementById('file-info').classList.add('hidden');
-            document.getElementById('upload-area').classList.remove('hidden');
-        }
-        
-        // معالجة رفع الملف
-        function handleFileUpload(e) {
-            e.preventDefault();
-            
-            if (!selectedFile) {
-                alert('يرجى اختيار ملف لرفعه');
-                return;
-            }
-            
-            // جمع أسماء الطلاب
-            const studentInputs = document.querySelectorAll('#students-container input');
-            const studentNames = Array.from(studentInputs).map(input => input.value).filter(name => name.trim() !== '');
-            
-            if (studentNames.length === 0) {
-                alert('يرجى إدخال اسم طالب واحد على الأقل');
-                return;
-            }
-            
-            const studentGroup = document.getElementById('student-group').value;
-            const studentSection = document.getElementById('student-section').value;
-            const studentComment = document.getElementById('student-comment').value;
-            
-            // تعطيل زر الإرسال
-            const submitBtn = document.getElementById('submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...';
-            
-            // إعداد بيانات الطالب للرفع
-            const uploadData = {
-                studentNames: studentNames,
-                studentGroup: studentGroup,
-                studentSection: studentSection,
-                studentComment: studentComment,
-                fileName: selectedFile.name,
-                fileType: getFileType(selectedFile),
-                fileSize: selectedFile.size,
-                fileExt: selectedFile.name.split('.').pop().toLowerCase(),
-                teacherName: currentTeacher.name,
-                teacherSubject: currentTeacher.subject,
-                timestamp: new Date().toISOString(),
-                studentId: studentId
-            };
-            
-            // إرسال الملف والمعلومات مباشرة إلى التليجرام
-            sendFileToTelegram(uploadData);
-        }
-        
-        // إرسال الملف مباشرة إلى التليجرام
-        function sendFileToTelegram(uploadData) {
-            const formData = new FormData();
-            formData.append('chat_id', currentTeacher.id);
-            formData.append('document', selectedFile);
-            
-            // إعداد النص الوصفي للملف
-            const studentsText = uploadData.studentNames.map((name, index) => `${index+1}- ${name}`).join('\n');
-            
-            const caption = `
-الملف: ${uploadData.fileName}
-
-نوع الملف: ${uploadData.fileType}
-حجم الملف: ${formatFileSize(uploadData.fileSize)}
-أسماء الطلاب:
-${studentsText}
-الجروب: ${uploadData.studentGroup}
-السكشن: ${uploadData.studentSection}
-المادة: ${uploadData.teacherSubject}
-${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComment}` : ''}
-            `.trim();
-            
-            formData.append('caption', caption);
-            
-            // إرسال الملف
-            fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    // حفظ بيانات الرفع في Firebase (بدون الملف)
-                    const uploadId = 'upload_' + Date.now();
-                    database.ref('uploads/' + currentTeacher.name + '/' + uploadId).set(uploadData)
-                    .then(() => {
-                        // حفظ في السجلات العامة
-                        database.ref('globalRecords/' + uploadId).set({
-                            fileName: uploadData.fileName,
-                            fileType: uploadData.fileType,
-                            fileSize: uploadData.fileSize,
-                            teacherName: uploadData.teacherName,
-                            teacherSubject: uploadData.teacherSubject,
-                            timestamp: uploadData.timestamp,
-                            studentId: uploadData.studentId
-                        });
-                    })
-                    .then(() => {
-                        showUploadStatus('تم إرسال الملف بنجاح إلى المعلم.', 'success');
-                        resetForm();
-                        loadPersonalRecords(currentTeacher.name);
-                        loadGlobalRecords();
-                    })
-                    .catch(error => {
-                        console.error('Error saving upload data:', error);
-                        showUploadStatus('تم إرسال الملف ولكن حدث خطأ في حفظ البيانات.', 'warning');
-                    });
-                } else {
-                    throw new Error('Failed to send file');
-                }
-            })
-            .catch(error => {
-                console.error('Error sending file:', error);
-                showUploadStatus('حدث خطأ أثناء إرسال الملف. يرجى المحاولة مرة أخرى.', 'danger');
-            })
-            .finally(() => {
-                resetSubmitButton();
-            });
-        }
-        
-        // تحميل السجلات الشخصية
-        function loadPersonalRecords(teacherName) {
-            database.ref('uploads/' + teacherName).orderByChild('studentId').equalTo(studentId).on('value', (snapshot) => {
-                const personalRecords = document.getElementById('personal-records');
-                personalRecords.innerHTML = '';
-                
-                if (!snapshot.exists()) {
-                    personalRecords.innerHTML = '<p class="text-center text-muted my-3">لا توجد سجلات سابقة</p>';
-                    return;
-                }
-                
-                snapshot.forEach((childSnapshot) => {
-                    const upload = childSnapshot.val();
-                    
-                    const recordElement = document.createElement('div');
-                    recordElement.className = 'record-item bg-light p-3 mb-3 rounded';
-                    recordElement.innerHTML = `
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h6 class="mb-1">${upload.fileName}</h6>
-                                <div class="small text-muted">
-                                    <span class="badge bg-primary me-2">${upload.fileType}</span>
-                                    <span>${formatFileSize(upload.fileSize)}</span>
-                                </div>
-                                <div class="small mt-1">
-                                    <i class="fas fa-user-tie me-1"></i>${upload.teacherName}
-                                    <i class="fas fa-book me-1 ms-2"></i>${upload.teacherSubject}
-                                </div>
-                            </div>
-                            <div class="text-muted small">${formatDate(upload.timestamp)}</div>
-                        </div>
-                    `;
-                    
-                    personalRecords.appendChild(recordElement);
-                });
-            });
-        }
-        
-        // تحميل السجلات العامة
-        function loadGlobalRecords() {
-            database.ref('globalRecords').orderByChild('timestamp').limitToLast(20).on('value', (snapshot) => {
-                const globalRecordsContainer = document.getElementById('global-records-container');
-                globalRecordsContainer.innerHTML = '';
-                
-                if (!snapshot.exists()) {
-                    globalRecordsContainer.innerHTML = '<p class="text-center text-muted my-4">لا توجد سجلات عامة</p>';
-                    return;
-                }
-                
-                const records = [];
-                snapshot.forEach((childSnapshot) => {
-                    records.push(childSnapshot.val());
-                });
-                
-                // عكس الترتيب لعرض الأحدث أولاً
-                records.reverse();
-                
-                records.forEach(record => {
-                    const col = document.createElement('div');
-                    col.className = 'col-md-6 col-lg-4 mb-4';
-                    col.innerHTML = `
-                        <div class="teacher-card glass-card h-100">
-                            <div class="card-body">
-                                <h6 class="card-title">${record.fileName}</h6>
-                                <div class="mb-2">
-                                    <span class="badge bg-primary me-1">${record.fileType}</span>
-                                    <span class="badge bg-secondary">${formatFileSize(record.fileSize)}</span>
-                                </div>
-                                <div class="small">
-                                    <div><i class="fas fa-user-tie me-2"></i>${record.teacherName}</div>
-                                    <div><i class="fas fa-book me-2"></i>${record.teacherSubject}</div>
-                                    <div class="text-muted mt-2">${formatDate(record.timestamp)}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    globalRecordsContainer.appendChild(col);
-                });
-            });
-        }
-        
-        // عرض حالة الرفع
-        function showUploadStatus(message, type) {
-            const statusElement = document.getElementById('upload-status');
-            const alertClass = type === 'success' ? 'alert-success' : type === 'warning' ? 'alert-warning' : 'alert-danger';
-            
-            statusElement.innerHTML = `
-                <div class="alert ${alertClass} alert-dismissible fade show">
-                    ${message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-        }
-        
-        // إعادة تعيين زر الإرسال
-        function resetSubmitButton() {
-            const submitBtn = document.getElementById('submit-btn');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الملف';
-        }
-        
-        // إعادة تعيين الاستمارة
-        function resetForm() {
-            document.getElementById('upload-form').reset();
-            removeFile();
-            
-            // إعادة تعيين أسماء الطلاب
-            const container = document.getElementById('students-container');
-            container.innerHTML = '<div class="student-item"><input type="text" class="form-control" placeholder="اسم الطالب الأول" required></div>';
-            studentCount = 1;
-        }
-        
         // التمرير إلى الأعلى
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // وظائف مساعدة
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-        
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('ar-EG') + ' ' + date.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
         }
     </script>
     
