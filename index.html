@@ -3,241 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduShare - نظام رفع الملفات التعليمي</title>
+    <title>EduShare - إنشاء صفحة رفع الملفات</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --success: #4cc9f0;
-            --info: #4895ef;
-            --warning: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --success: #10b981;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --border: #e2e8f0;
+        }
+        
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Tajawal', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            color: #333;
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
         }
         
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .header-gradient {
-            background: var(--gradient);
+        .header-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-bottom: none;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         
         .btn-primary {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border: none;
-            border-radius: 50px;
-            padding: 12px 30px;
+            border-radius: 10px;
+            padding: 0.875rem 2rem;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
         }
         
-        .student-item {
-            background: rgba(67, 97, 238, 0.1);
-            border-radius: 10px;
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .upload-area {
-            border: 3px dashed #4361ee;
-            border-radius: 20px;
-            padding: 40px 20px;
-            text-align: center;
+        .help-icon {
+            color: var(--primary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(67, 97, 238, 0.05);
+            margin-right: 5px;
+            transition: color 0.3s ease;
         }
         
-        .upload-area:hover {
-            background: rgba(67, 97, 238, 0.1);
-            transform: scale(1.02);
+        .help-icon:hover {
+            color: var(--primary-dark);
         }
         
-        .upload-area i {
-            font-size: 64px;
-            color: #4361ee;
-            margin-bottom: 20px;
-        }
-        
-        .file-info {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        
-        .file-type-badge {
-            background: var(--gradient);
+        .success-message {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: fadeIn 0.5s ease;
         }
         
-        .global-records {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .record-item {
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .record-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .floating-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 100;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
+        .link-box {
+            background-color: #f8fafc;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(67, 97, 238, 0.4);
-            transition: all 0.3s ease;
+            justify-content: space-between;
         }
         
-        .floating-btn:hover {
-            transform: scale(1.1);
+        .link-text {
+            font-family: monospace;
+            color: var(--primary);
+            word-break: break-all;
+            margin: 0;
+            flex: 1;
         }
         
-        .hidden {
-            display: none;
-        }
-        
-        /* تخصيص شريط التمرير */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
+        .copy-btn {
             background: var(--primary);
-            border-radius: 10px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            transition: background 0.3s ease;
         }
         
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .header-section, .card-body {
+                padding: 1.5rem;
+            }
+            
+            .link-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .copy-btn {
+                margin-top: 1rem;
+                margin-right: 0;
+                align-self: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- زر العائمة للانتقال السريع -->
-    <div class="floating-btn" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
     <div class="container py-4">
-        <!-- الهيدر -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="glass-card header-gradient text-center py-4 mb-4">
-                    <h1 class="display-5 fw-bold">
-                        <i class="fas fa-graduation-cap me-2"></i>EduShare
-                    </h1>
-                    <p class="lead mb-0">نظام رفع الملفات التعليمي - صفحة الأم</p>
-                </div>
+        <div class="main-container">
+            <!-- الهيدر -->
+            <div class="header-section text-center">
+                <h1 class="display-5 fw-bold mb-3">EduShare</h1>
+                <p class="subtitle mb-0">يمكنك إنشاء صفحة إلكترونية لاستقبال الملفات عبر بوت تليجرام</p>
             </div>
-        </div>
 
-        <!-- لوحة المعلم -->
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="glass-card">
-                    <div class="card-header header-gradient py-3">
-                        <h4 class="mb-0">
-                            <i class="fas fa-user-tie me-2"></i>لوحة المعلم (Admin Panel)
-                        </h4>
-                    </div>
-                    <div class="card-body p-4">
-                        <form id="teacher-form">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="teacher-name" class="form-label">اسم المعلم</label>
-                                    <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف صغيرة وأرقام)" required pattern="[a-z0-9]+">
-                                    <div class="form-text">يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام فقط</div>
-                                </div>
-                                
-                                <div class="col-md-6 mb-3">
-                                    <label for="teacher-subject" class="form-label">اسم المادة</label>
-                                    <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
-                                </div>
+            <!-- لوحة الأدمن -->
+            <div class="form-card fade-in">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user-tie me-2"></i>Admin Panel
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form id="teacher-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="teacher-name" class="form-label">اسم المعلم</label>
+                                <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف صغيرة وأرقام)" required pattern="[a-z0-9]+">
+                                <div class="form-text text-muted">يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام فقط</div>
                             </div>
                             
-                            <div class="mb-3">
-                                <label for="bot-token" class="form-label">
-                                    توكن البوت
-                                    <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/QVBdIThA3II?si=AEgSzy1UqltRykeG', '_blank')"></i>
-                                </label>
-                                <input type="text" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
+                            <div class="col-md-6 mb-3">
+                                <label for="teacher-subject" class="form-label">اسم المادة</label>
+                                <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label for="teacher-id" class="form-label">
-                                    ID الحساب
-                                    <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/Xl3blDReCzs?si=JJ6qdIVyYMhT2VYL', '_blank')"></i>
-                                </label>
-                                <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary w-100 py-3">
-                                <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
-                            </button>
-                        </form>
+                        </div>
                         
-                        <div id="success-message" class="alert alert-success mt-4 p-3 rounded-3 hidden">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-check-circle fa-2x me-3"></i>
-                                <div>
-                                    <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
-                                    <p class="mb-2" id="message-text">البوت يعمل الآن بنجاح ✅</p>
-                                </div>
+                        <div class="mb-3">
+                            <label for="bot-token" class="form-label">
+                                <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/QVBdIThA3II?si=AEgSzy1UqltRykeG', '_blank')"></i>
+                                توكن البوت
+                            </label>
+                            <input type="text" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="teacher-id" class="form-label">
+                                <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/Xl3blDReCzs?si=JJ6qdIVyYMhT2VYL', '_blank')"></i>
+                                ID الحساب
+                            </label>
+                            <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-3">
+                            <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
+                        </button>
+                    </form>
+                    
+                    <div id="success-message" class="success-message hidden">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle fa-2x me-3"></i>
+                            <div>
+                                <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
+                                <p class="mb-0">البوت يعمل الآن بنجاح ✅</p>
                             </div>
-                            <div class="mt-3">
-                                <strong>رابط صفحة الرفع:</strong>
-                                <div class="teacher-link mt-2 p-3 bg-light rounded-2" id="teacher-link"></div>
+                        </div>
+                        <div class="mt-3">
+                            <strong>رابط صفحة الرفع:</strong>
+                            <div class="link-box mt-2">
+                                <p class="link-text" id="teacher-link"></p>
+                                <button class="copy-btn" onclick="copyLink()">
+                                    <i class="fas fa-copy me-1"></i>نسخ
+                                </button>
                             </div>
-                            <div class="mt-2 text-muted">
-                                <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
-                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
                         </div>
                     </div>
                 </div>
@@ -263,9 +283,24 @@
         
         // عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
+            // تحميل البيانات المحفوظة
+            loadSavedData();
+            
             // إعداد استمارة المعلم
             document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
         });
+        
+        // تحميل البيانات المحفوظة
+        function loadSavedData() {
+            const savedData = localStorage.getItem('teacherData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('teacher-name').value = data.name || '';
+                document.getElementById('teacher-subject').value = data.subject || '';
+                document.getElementById('bot-token').value = data.token || '';
+                document.getElementById('teacher-id').value = data.id || '';
+            }
+        }
         
         // معالجة إدخال بيانات المعلم
         function handleTeacherSubmit(e) {
@@ -300,11 +335,6 @@
                     // حفظ بيانات المعلم في Firebase
                     saveTeacherData(teacherName, teacherSubject, botToken, teacherId);
                     
-                    // عرض رسالة النجاح
-                    document.getElementById('success-message').classList.remove('hidden');
-                    document.getElementById('teacher-link').textContent = 
-                        `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
-                    
                     // حفظ في LocalStorage
                     localStorage.setItem('teacherData', JSON.stringify({
                         name: teacherName,
@@ -334,16 +364,34 @@
             
             database.ref('teachers/' + teacherName).set(teacherData)
             .then(() => {
-                console.log('Teacher data saved successfully');
+                // عرض رسالة النجاح
+                document.getElementById('success-message').classList.remove('hidden');
+                const link = `${window.location.origin}${window.location.pathname.replace('index.html', '')}upload.html?teacher=${teacherName}`;
+                document.getElementById('teacher-link').textContent = link;
+                
+                // التمرير إلى رسالة النجاح
+                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
             })
             .catch(error => {
                 console.error('Error saving teacher data:', error);
             });
         }
         
-        // التمرير إلى الأعلى
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // نسخ الرابط
+        function copyLink() {
+            const linkText = document.getElementById('teacher-link').textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                // تغيير نص الزر مؤقتًا
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i>تم النسخ';
+                copyBtn.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = '';
+                }, 2000);
+            });
         }
     </script>
     
