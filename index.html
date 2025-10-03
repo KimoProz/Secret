@@ -3,261 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduShare - إنشاء صفحة رفع الملفات</title>
+    <title>رفع الملفات</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --success: #10b981;
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --border: #e2e8f0;
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --info: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+            --bg-color: #f5f7fa;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #333;
+            --border-color: rgba(0, 0, 0, 0.1);
         }
-        
-        * {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-color: #e0e0e0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --light: #2d2d2d;
         }
         
         body {
-            background-color: #f1f5f9;
-            color: #334155;
-            line-height: 1.6;
-        }
-        
-        .main-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .header-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
-        }
-        
-        .form-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .form-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .card-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 1.5rem;
-            border-bottom: none;
-        }
-        
-        .card-body {
-            padding: 2rem;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-control, .form-select {
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            background: var(--bg-color);
+            min-height: 100vh;
+            color: var(--text-color);
             transition: all 0.3s ease;
         }
         
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .header-gradient {
+            background: var(--gradient);
+            color: white;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gradient);
             border: none;
             border-radius: 10px;
-            padding: 0.875rem 2rem;
+            padding: 12px 30px;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
         
-        .help-icon {
-            color: var(--primary);
-            cursor: pointer;
-            margin-right: 5px;
-            transition: color 0.3s ease;
-        }
-        
-        .help-icon:hover {
-            color: var(--primary-dark);
-        }
-        
-        .success-message {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .link-box {
-            background-color: #f8fafc;
-            border: 1px dashed var(--border);
+        .student-item {
+            background: rgba(67, 97, 238, 0.1);
             border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem 0;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area {
+            border: 3px dashed #4361ee;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(67, 97, 238, 0.05);
+        }
+        
+        .upload-area:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: scale(1.02);
+        }
+        
+        .upload-area i {
+            font-size: 64px;
+            color: #4361ee;
+            margin-bottom: 20px;
+        }
+        
+        .file-info {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-type-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .personal-records {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .record-item {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background: var(--light);
+        }
+        
+        .record-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(67, 97, 238, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        .link-text {
-            font-family: monospace;
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .subject-badge {
+            background: rgba(67, 97, 238, 0.1);
             color: var(--primary);
-            word-break: break-all;
-            margin: 0;
-            flex: 1;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
         }
         
         .copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin-right: 1rem;
-            transition: background 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
         .copy-btn:hover {
-            background: var(--primary-dark);
+            transform: scale(1.1);
         }
         
-        .subtitle {
-            color: #64748b;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+        .upload-link-container {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .upload-link {
+            background: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-family: monospace;
+            word-break: break-all;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        [data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+
+        /* تحسينات للهواتف */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .upload-area {
+                padding: 20px 10px;
+            }
+            
+            .upload-area i {
+                font-size: 48px;
+            }
+        }
+
+        /* أنيميشن للعناصر */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease;
+
+        .slide-in {
+            animation: slideIn 0.5s ease-in-out;
         }
         
-        @media (max-width: 768px) {
-            .header-section, .card-body {
-                padding: 1.5rem;
-            }
-            
-            .link-box {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .copy-btn {
-                margin-top: 1rem;
-                margin-right: 0;
-                align-self: flex-end;
-            }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container py-4">
-        <div class="main-container">
-            <!-- الهيدر -->
-            <div class="header-section text-center">
-                <h1 class="display-5 fw-bold mb-3">EduShare</h1>
-                <p class="subtitle mb-0">يمكنك إنشاء صفحة إلكترونية لاستقبال الملفات عبر بوت تليجرام</p>
-            </div>
+    <!-- زر تبديل الوضع الليلي -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </div>
 
-            <!-- لوحة الأدمن -->
-            <div class="form-card fade-in">
-                <div class="card-header">
-                    <h4 class="mb-0">
-                        <i class="fas fa-user-tie me-2"></i>Admin Panel
-                    </h4>
+    <div class="container py-4">
+        <!-- الهيدر -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="glass-card header-gradient text-center py-4 mb-4 fade-in">
+                    <h1 class="display-5 fw-bold">
+                        <i class="fas fa-cloud-upload-alt me-2"></i>رفع الملفات
+                    </h1>
+                    <p class="lead mb-0" id="page-subtitle">املئ البيانات ثم ارفع ملفك ليتم ارساله للادمن</p>
                 </div>
-                <div class="card-body">
-                    <form id="teacher-form">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="teacher-name" class="form-label">اسم المعلم</label>
-                                <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف صغيرة وأرقام)" required pattern="[a-z0-9]+">
-                                <div class="form-text text-muted">يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام فقط</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="glass-card mb-4 fade-in">
+                    <div class="card-header header-gradient py-3">
+                        <h4 class="mb-0">
+                            <i class="fas fa-cloud-upload-alt me-2"></i>
+                            <span id="page-title">رفع ملف جديد</span>
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- اسم المادة -->
+                        <div class="mb-4 text-center">
+                            <div class="subject-badge" id="subject-title">
+                                <i class="fas fa-book me-2"></i>
+                                <span id="subject-name">المادة</span>
+                            </div>
+                        </div>
+
+                        <form id="upload-form">
+                            <!-- أسماء الطلاب -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <label class="form-label fw-bold">أسماء الطلاب</label>
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="addStudent()">
+                                        <i class="fas fa-plus me-1"></i>إضافة طالب
+                                    </button>
+                                </div>
+                                <div id="students-container">
+                                    <div class="student-item">
+                                        <input type="text" class="form-control" placeholder="اسم الطالب الأول" required>
+                                    </div>
+                                </div>
+                                <div class="form-text">يمكنك إضافة حتى 10 طلاب كحد أقصى</div>
                             </div>
                             
-                            <div class="col-md-6 mb-3">
-                                <label for="teacher-subject" class="form-label">اسم المادة</label>
-                                <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="student-group" class="form-label">الجروب</label>
+                                    <input type="text" class="form-control" id="student-group" required>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="student-section" class="form-label">السكشن</label>
+                                    <input type="text" class="form-control" id="student-section" required>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="bot-token" class="form-label">
-                                <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/QVBdIThA3II?si=AEgSzy1UqltRykeG', '_blank')"></i>
-                                توكن البوت
-                            </label>
-                            <input type="text" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="teacher-id" class="form-label">
-                                <i class="fas fa-question-circle help-icon" onclick="window.open('https://youtu.be/Xl3blDReCzs?si=JJ6qdIVyYMhT2VYL', '_blank')"></i>
-                                ID الحساب
-                            </label>
-                            <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100 py-3">
-                            <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
-                        </button>
-                    </form>
-                    
-                    <div id="success-message" class="success-message hidden">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-check-circle fa-2x me-3"></i>
-                            <div>
-                                <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
-                                <p class="mb-0">البوت يعمل الآن بنجاح ✅</p>
+                            
+                            <div class="mb-3">
+                                <label for="student-comment" class="form-label">تعليق الطالب</label>
+                                <textarea class="form-control" id="student-comment" rows="3" placeholder="أدخل تعليقك هنا (اختياري)"></textarea>
                             </div>
+                            
+                            <!-- رفع الملف -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">رفع الملف</label>
+                                <div class="upload-area" id="upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
+                                    <p class="text-muted mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
+                                </div>
+                                <input type="file" id="file-input" class="hidden" accept=".pdf,.xls,.xlsx,.ppt,.pptx,.doc,.docx,.png,.jpg,.jpeg,.zip,.py,.cpp,.java">
+                                <div class="file-info hidden" id="file-info">
+                                    <div class="d-flex align-items-center">
+                                        <div id="file-preview" class="me-3"></div>
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <div id="file-name" class="fw-bold h6 mb-1"></div>
+                                                    <div id="file-size" class="text-muted small mb-2"></div>
+                                                    <span id="file-type-badge" class="file-type-badge"></span>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile()">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3" id="submit-btn">
+                                <i class="fas fa-paper-plane me-2"></i>إرسال الملف
+                            </button>
+                        </form>
+                        
+                        <div id="upload-status" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- السجلات الشخصية -->
+            <div class="col-lg-4">
+                <div class="glass-card slide-in">
+                    <div class="card-header header-gradient py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-history me-2"></i>سجلاتي الشخصية
+                        </h5>
+                    </div>
+                    <div class="card-body p-3">
+                        <div id="personal-records" class="personal-records">
+                            <p class="text-center text-muted my-3">جاري تحميل السجلات...</p>
                         </div>
-                        <div class="mt-3">
-                            <strong>رابط صفحة الرفع:</strong>
-                            <div class="link-box mt-2">
-                                <p class="link-text" id="teacher-link"></p>
-                                <button class="copy-btn" onclick="copyLink()">
-                                    <i class="fas fa-copy me-1"></i>نسخ
+                    </div>
+                </div>
+
+                <!-- رابط الرفع -->
+                <div class="glass-card mt-4 slide-in" id="upload-link-container">
+                    <div class="card-header header-gradient py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-link me-2"></i>رابط الرفع
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-link-container">
+                            <div class="d-flex align-items-center">
+                                <div class="upload-link flex-grow-1" id="upload-link-text">
+                                    جاري التحميل...
+                                </div>
+                                <button class="btn btn-sm btn-primary copy-btn ms-2" id="copy-link-btn" title="نسخ الرابط">
+                                    <i class="fas fa-copy"></i>
                                 </button>
                             </div>
-                        </div>
-                        <div class="mt-2">
-                            <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
                         </div>
                     </div>
                 </div>
@@ -281,117 +417,480 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         
+        // متغيرات عامة
+        let currentTeacher = null;
+        let selectedFile = null;
+        let studentId = null;
+        let studentCount = 1;
+        const maxStudents = 10;
+        
         // عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // تحميل البيانات المحفوظة
-            loadSavedData();
+            // التحقق من وجود معلم في الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const teacherName = urlParams.get('teacher');
             
-            // إعداد استمارة المعلم
-            document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
+            if (teacherName) {
+                loadTeacherPage(teacherName);
+            } else {
+                document.body.innerHTML = '<div class="container text-center py-5"><h2>صفحة غير صالحة</h2><p>يرجى استخدام الرابط الصحيح من صفحة المعلم</p></div>';
+            }
+            
+            // إعداد استمارة الرفع
+            document.getElementById('upload-form').addEventListener('submit', handleFileUpload);
+            
+            // إعداد منطقة الرفع
+            document.getElementById('upload-area').addEventListener('click', () => {
+                document.getElementById('file-input').click();
+            });
+            
+            document.getElementById('file-input').addEventListener('change', handleFileSelect);
+            
+            // إعداد سحب وإفلات الملفات
+            const uploadArea = document.getElementById('upload-area');
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#3a0ca3';
+                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.15)';
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = '#4361ee';
+                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#4361ee';
+                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+                
+                if (e.dataTransfer.files.length) {
+                    handleFileSelect({ target: { files: e.dataTransfer.files } });
+                }
+            });
+            
+            // إعداد زر نسخ الرابط
+            document.getElementById('copy-link-btn').addEventListener('click', copyUploadLink);
+            
+            // إعداد تبديل الوضع الليلي
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // تحميل الوضع المحفوظ
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                updateThemeIcon(savedTheme);
+            }
         });
         
-        // تحميل البيانات المحفوظة
-        function loadSavedData() {
-            const savedData = localStorage.getItem('teacherData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                document.getElementById('teacher-name').value = data.name || '';
-                document.getElementById('teacher-subject').value = data.subject || '';
-                document.getElementById('bot-token').value = data.token || '';
-                document.getElementById('teacher-id').value = data.id || '';
+        // تبديل الوضع الليلي
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        // تحديث أيقونة الوضع الليلي
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
             }
         }
         
-        // معالجة إدخال بيانات المعلم
-        function handleTeacherSubmit(e) {
-            e.preventDefault();
-            
-            const teacherName = document.getElementById('teacher-name').value;
-            const teacherSubject = document.getElementById('teacher-subject').value;
-            const botToken = document.getElementById('bot-token').value;
-            const teacherId = document.getElementById('teacher-id').value;
-            
-            // اختبار البوت
-            testBot(botToken, teacherId, teacherName, teacherSubject);
+        // تحميل صفحة المعلم
+        function loadTeacherPage(teacherName) {
+            database.ref('teachers/' + teacherName).once('value')
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    currentTeacher = snapshot.val();
+                    
+                    // تحديث عنوان الصفحة
+                    document.getElementById('subject-name').textContent = currentTeacher.subject;
+                    
+                    // إنشاء معرف فريد للطالب إذا لم يكن موجود
+                    if (!localStorage.getItem('studentId')) {
+                        studentId = 'student_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                        localStorage.setItem('studentId', studentId);
+                    } else {
+                        studentId = localStorage.getItem('studentId');
+                    }
+                    
+                    // تحديث رابط الرفع
+                    updateUploadLink();
+                    
+                    // تحميل السجلات الشخصية
+                    loadPersonalRecords();
+                } else {
+                    document.body.innerHTML = '<div class="container text-center py-5"><h2>المعلم غير موجود</h2><p>لم يتم العثور على صفحة المعلم المطلوبة</p></div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading teacher:', error);
+                document.body.innerHTML = '<div class="container text-center py-5"><h2>خطأ في التحميل</h2><p>حدث خطأ أثناء تحميل صفحة المعلم</p></div>';
+            });
         }
         
-        // اختبار البوت
-        function testBot(botToken, teacherId, teacherName, teacherSubject) {
-            const message = `✅ تم ربط البوت بنجاح!\n\nاسم المعلم: ${teacherName}\nالمادة: ${teacherSubject}\n\nيمكنك الآن استقبال ملفات الطلاب.`;
-            
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: teacherId,
-                    text: message
+        // تحديث رابط الرفع
+        function updateUploadLink() {
+            const uploadLink = window.location.href;
+            document.getElementById('upload-link-text').textContent = uploadLink;
+        }
+        
+        // نسخ رابط الرفع
+        function copyUploadLink() {
+            const linkText = document.getElementById('upload-link-text').textContent;
+            navigator.clipboard.writeText(linkText)
+                .then(() => {
+                    const copyBtn = document.getElementById('copy-link-btn');
+                    const originalHTML = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    copyBtn.classList.remove('btn-primary');
+                    copyBtn.classList.add('btn-success');
+                    
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalHTML;
+                        copyBtn.classList.remove('btn-success');
+                        copyBtn.classList.add('btn-primary');
+                    }, 2000);
                 })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        }
+        
+        // إضافة طالب جديد
+        function addStudent() {
+            if (studentCount >= maxStudents) {
+                alert(`لا يمكن إضافة أكثر من ${maxStudents} طلاب`);
+                return;
+            }
+            
+            studentCount++;
+            const container = document.getElementById('students-container');
+            const newStudent = document.createElement('div');
+            newStudent.className = 'student-item fade-in';
+            newStudent.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <input type="text" class="form-control me-2" placeholder="اسم الطالب ${studentCount}" required>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="removeStudent(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(newStudent);
+        }
+        
+        // إزالة طالب
+        function removeStudent(button) {
+            if (studentCount <= 1) {
+                alert('يجب أن يكون هناك طالب واحد على الأقل');
+                return;
+            }
+            
+            button.closest('.student-item').remove();
+            studentCount--;
+        }
+        
+        // معالجة اختيار الملف
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                selectedFile = file;
+                
+                // عرض معلومات الملف
+                document.getElementById('file-name').textContent = file.name;
+                document.getElementById('file-size').textContent = formatFileSize(file.size);
+                
+                // عرض نوع الملف
+                const fileType = getFileType(file);
+                document.getElementById('file-type-badge').textContent = fileType;
+                
+                // عرض معاينة إذا كان ملف صورة
+                const previewElement = document.getElementById('file-preview');
+                previewElement.innerHTML = '';
+                
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.style.maxWidth = '80px';
+                    img.style.maxHeight = '80px';
+                    img.style.borderRadius = '10px';
+                    img.onload = () => URL.revokeObjectURL(img.src);
+                    previewElement.appendChild(img);
+                } else {
+                    const icon = document.createElement('i');
+                    icon.className = getFileIcon(file) + ' fa-3x text-muted';
+                    previewElement.appendChild(icon);
+                }
+                
+                document.getElementById('file-info').classList.remove('hidden');
+                document.getElementById('upload-area').classList.add('hidden');
+            }
+        }
+        
+        // الحصول على نوع الملف
+        function getFileType(file) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const typeMap = {
+                'pdf': 'PDF',
+                'xls': 'Excel',
+                'xlsx': 'Excel',
+                'ppt': 'PowerPoint',
+                'pptx': 'PowerPoint',
+                'doc': 'Word',
+                'docx': 'Word',
+                'png': 'صورة',
+                'jpg': 'صورة',
+                'jpeg': 'صورة',
+                'zip': 'مضغوط',
+                'py': 'Python',
+                'cpp': 'C++',
+                'java': 'Java'
+            };
+            
+            return typeMap[ext] || 'ملف';
+        }
+        
+        // الحصول على أيقونة الملف
+        function getFileIcon(file) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'png': 'fas fa-file-image',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'py': 'fab fa-python',
+                'cpp': 'fas fa-file-code',
+                'java': 'fab fa-java'
+            };
+            
+            return iconMap[ext] || 'fas fa-file';
+        }
+        
+        // إزالة الملف المختار
+        function removeFile() {
+            selectedFile = null;
+            document.getElementById('file-input').value = '';
+            document.getElementById('file-info').classList.add('hidden');
+            document.getElementById('upload-area').classList.remove('hidden');
+        }
+        
+        // معالجة رفع الملف
+        function handleFileUpload(e) {
+            e.preventDefault();
+            
+            if (!selectedFile) {
+                alert('يرجى اختيار ملف لرفعه');
+                return;
+            }
+            
+            // جمع أسماء الطلاب
+            const studentInputs = document.querySelectorAll('#students-container input');
+            const studentNames = Array.from(studentInputs).map(input => input.value).filter(name => name.trim() !== '');
+            
+            if (studentNames.length === 0) {
+                alert('يرجى إدخال اسم طالب واحد على الأقل');
+                return;
+            }
+            
+            const studentGroup = document.getElementById('student-group').value;
+            const studentSection = document.getElementById('student-section').value;
+            const studentComment = document.getElementById('student-comment').value;
+            
+            // تعطيل زر الإرسال
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...';
+            
+            // إعداد بيانات الطالب للرفع
+            const uploadData = {
+                studentNames: studentNames,
+                studentGroup: studentGroup,
+                studentSection: studentSection,
+                studentComment: studentComment,
+                fileName: selectedFile.name,
+                fileType: getFileType(selectedFile),
+                fileSize: selectedFile.size,
+                fileExt: selectedFile.name.split('.').pop().toLowerCase(),
+                teacherName: currentTeacher.name,
+                teacherSubject: currentTeacher.subject,
+                timestamp: new Date().toISOString(),
+                studentId: studentId
+            };
+            
+            // إرسال الملف والمعلومات مباشرة إلى التليجرام
+            sendFileToTelegram(uploadData);
+        }
+        
+        // إرسال الملف مباشرة إلى التليجرام
+        function sendFileToTelegram(uploadData) {
+            const formData = new FormData();
+            formData.append('chat_id', currentTeacher.id);
+            formData.append('document', selectedFile);
+            
+            // إعداد النص الوصفي للملف
+            const studentsText = uploadData.studentNames.map((name, index) => `${index+1}- ${name}`).join('\n');
+            
+            const caption = `
+الملف: ${uploadData.fileName}
+
+نوع الملف: ${uploadData.fileType}
+حجم الملف: ${formatFileSize(uploadData.fileSize)}
+أسماء الطلاب:
+${studentsText}
+الجروب: ${uploadData.studentGroup}
+السكشن: ${uploadData.studentSection}
+المادة: ${uploadData.teacherSubject}
+${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComment}` : ''}
+            `.trim();
+            
+            formData.append('caption', caption);
+            
+            // إرسال الملف
+            fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
+                method: 'POST',
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    // حفظ بيانات المعلم في Firebase
-                    saveTeacherData(teacherName, teacherSubject, botToken, teacherId);
-                    
-                    // حفظ في LocalStorage
-                    localStorage.setItem('teacherData', JSON.stringify({
-                        name: teacherName,
-                        subject: teacherSubject,
-                        token: botToken,
-                        id: teacherId
-                    }));
+                    // حفظ بيانات الرفع في Firebase (بدون الملف)
+                    const uploadId = 'upload_' + Date.now();
+                    database.ref('uploads/' + currentTeacher.name + '/' + uploadId).set(uploadData)
+                    .then(() => {
+                        // حفظ في السجلات الشخصية
+                        database.ref('personalRecords/' + studentId + '/' + uploadId).set({
+                            fileName: uploadData.fileName,
+                            fileType: uploadData.fileType,
+                            fileSize: uploadData.fileSize,
+                            teacherName: uploadData.teacherName,
+                            teacherSubject: uploadData.teacherSubject,
+                            timestamp: uploadData.timestamp
+                        });
+                    })
+                    .then(() => {
+                        showUploadStatus('تم إرسال الملف بنجاح إلى المعلم.', 'success');
+                        resetForm();
+                        loadPersonalRecords();
+                    })
+                    .catch(error => {
+                        console.error('Error saving upload data:', error);
+                        showUploadStatus('تم إرسال الملف ولكن حدث خطأ في حفظ البيانات.', 'warning');
+                    });
                 } else {
-                    alert('فشل في إرسال الرسالة. يرجى التحقق من التوكن وID والمحاولة مرة أخرى.');
+                    throw new Error('Failed to send file');
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('حدث خطأ أثناء اختبار البوت. يرجى التحقق من التوكن وID والمحاولة مرة أخرى.');
-            });
-        }
-        
-        // حفظ بيانات المعلم في Firebase
-        function saveTeacherData(teacherName, teacherSubject, botToken, teacherId) {
-            const teacherData = {
-                name: teacherName,
-                subject: teacherSubject,
-                token: botToken,
-                id: teacherId,
-                createdAt: new Date().toISOString()
-            };
-            
-            database.ref('teachers/' + teacherName).set(teacherData)
-            .then(() => {
-                // عرض رسالة النجاح
-                document.getElementById('success-message').classList.remove('hidden');
-                const link = `${window.location.origin}${window.location.pathname.replace('index.html', '')}upload.html?teacher=${teacherName}`;
-                document.getElementById('teacher-link').textContent = link;
-                
-                // التمرير إلى رسالة النجاح
-                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                console.error('Error sending file:', error);
+                showUploadStatus('حدث خطأ أثناء إرسال الملف. يرجى المحاولة مرة أخرى.', 'danger');
             })
-            .catch(error => {
-                console.error('Error saving teacher data:', error);
+            .finally(() => {
+                resetSubmitButton();
             });
         }
         
-        // نسخ الرابط
-        function copyLink() {
-            const linkText = document.getElementById('teacher-link').textContent;
-            navigator.clipboard.writeText(linkText).then(() => {
-                // تغيير نص الزر مؤقتًا
-                const copyBtn = document.querySelector('.copy-btn');
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i>تم النسخ';
-                copyBtn.style.background = '#10b981';
+        // تحميل السجلات الشخصية
+        function loadPersonalRecords() {
+            database.ref('personalRecords/' + studentId).orderByChild('timestamp').limitToLast(10).on('value', (snapshot) => {
+                const personalRecordsContainer = document.getElementById('personal-records');
+                personalRecordsContainer.innerHTML = '';
                 
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalText;
-                    copyBtn.style.background = '';
-                }, 2000);
+                if (!snapshot.exists()) {
+                    personalRecordsContainer.innerHTML = '<p class="text-center text-muted my-3">لا توجد سجلات سابقة</p>';
+                    return;
+                }
+                
+                const records = [];
+                snapshot.forEach((childSnapshot) => {
+                    const record = childSnapshot.val();
+                    records.push(record);
+                });
+                
+                // عكس الترتيب لعرض الأحدث أولاً
+                records.reverse();
+                
+                records.forEach(record => {
+                    const recordElement = document.createElement('div');
+                    recordElement.className = 'record-item fade-in';
+                    recordElement.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">${record.fileName}</h6>
+                                <div class="small text-muted mb-2">
+                                    <span class="badge bg-primary me-2">${record.fileType}</span>
+                                    <span>${formatFileSize(record.fileSize)}</span>
+                                </div>
+                                <div class="small">
+                                    <i class="fas fa-user-tie me-1"></i>${record.teacherName}
+                                    <i class="fas fa-book me-1 ms-2"></i>${record.teacherSubject}
+                                </div>
+                            </div>
+                            <div class="text-muted small text-nowrap">${formatDate(record.timestamp)}</div>
+                        </div>
+                    `;
+                    
+                    personalRecordsContainer.appendChild(recordElement);
+                });
             });
+        }
+        
+        // عرض حالة الرفع
+        function showUploadStatus(message, type) {
+            const statusElement = document.getElementById('upload-status');
+            const alertClass = type === 'success' ? 'alert-success' : type === 'warning' ? 'alert-warning' : 'alert-danger';
+            
+            statusElement.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+        
+        // إعادة تعيين زر الإرسال
+        function resetSubmitButton() {
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الملف';
+        }
+        
+        // إعادة تعيين الاستمارة
+        function resetForm() {
+            document.getElementById('upload-form').reset();
+            removeFile();
+            
+            // إعادة تعيين أسماء الطلاب
+            const container = document.getElementById('students-container');
+            container.innerHTML = '<div class="student-item"><input type="text" class="form-control" placeholder="اسم الطالب الأول" required></div>';
+            studentCount = 1;
+        }
+        
+        // وظائف مساعدة
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG') + ' ' + date.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
         }
     </script>
     
