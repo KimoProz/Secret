@@ -533,6 +533,26 @@
             border-color: rgba(239, 68, 68, 0.3);
             background: rgba(239, 68, 68, 0.1);
         }
+
+        /* التعديل: لون النص داخل منطقة الرفع */
+        .upload-area h5,
+        .upload-area p {
+            color: #fff !important;
+        }
+
+        /* التعديل: أزرار المساعدة */
+        .help-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .help-btn:hover {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -568,7 +588,10 @@
                     
                     <div class="mb-3">
                         <label for="bot-token" class="form-label">
-                            <i class="fas fa-question-circle me-1"></i>
+                            <!-- التعديل: إضافة زر المساعدة للتوكن -->
+                            <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank')">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
                             توكن البوت
                         </label>
                         <input type="password" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
@@ -577,7 +600,10 @@
                     
                     <div class="mb-3">
                         <label for="teacher-id" class="form-label">
-                            <i class="fas fa-question-circle me-1"></i>
+                            <!-- التعديل: إضافة زر المساعدة للـID -->
+                            <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank')">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
                             ID الحساب
                         </label>
                         <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
@@ -669,7 +695,7 @@
                                 <div class="upload-area" id="upload-area">
                                     <i class="fas fa-cloud-upload-alt fa-2x mb-3"></i>
                                     <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
-                                    <p class="text-muted mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
+                                    <p class="mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
                                 </div>
                                 <input type="file" id="file-input" class="hidden" accept=".pdf,.xls,.xlsx,.ppt,.pptx,.doc,.docx,.png,.jpg,.jpeg,.zip,.py,.cpp,.java">
                                 <div class="file-info hidden" id="file-info">
