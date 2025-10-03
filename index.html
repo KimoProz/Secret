@@ -123,6 +123,12 @@
             background-color: #f8f9fa;
             border-radius: 5px;
         }
+        
+        .file-preview {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -220,13 +226,18 @@
                             <p>انقر لرفع ملف أو اسحب الملف هنا</p>
                             <p class="text-muted">(PDF, PPT, XLS, DOC, وغيرها)</p>
                         </div>
-                        <input type="file" id="file-input" class="hidden" accept=".pdf,.ppt,.pptx,.xls,.xlsx,.doc,.docx,.txt,.zip,.rar">
+                        <input type="file" id="file-input" class="hidden" accept=".pdf,.ppt,.pptx,.xls,.xlsx,.doc,.docx,.txt,.zip,.rar,.jpg,.jpeg,.png,.gif">
                         <div class="file-info hidden" id="file-info">
-                            <i class="fas fa-file me-2"></i>
-                            <span id="file-name"></span>
-                            <button type="button" class="btn btn-sm btn-danger ms-2" onclick="removeFile()">
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <div class="d-flex align-items-center">
+                                <div id="file-preview" class="me-3"></div>
+                                <div>
+                                    <div id="file-name" class="fw-bold"></div>
+                                    <div id="file-size" class="text-muted small"></div>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-danger me-3" onclick="removeFile()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -443,7 +454,27 @@
             const file = e.target.files[0];
             if (file) {
                 selectedFile = file;
+                
+                // عرض معلومات الملف
                 document.getElementById('file-name').textContent = file.name;
+                document.getElementById('file-size').textContent = formatFileSize(file.size);
+                
+                // عرض معاينة إذا كان ملف صورة
+                const previewElement = document.getElementById('file-preview');
+                previewElement.innerHTML = '';
+                
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.className = 'file-preview';
+                    img.onload = () => URL.revokeObjectURL(img.src);
+                    previewElement.appendChild(img);
+                } else {
+                    const icon = document.createElement('i');
+                    icon.className = 'fas fa-file fa-2x text-muted';
+                    previewElement.appendChild(icon);
+                }
+                
                 document.getElementById('file-info').classList.remove('hidden');
                 document.getElementById('upload-area').classList.add('hidden');
             }
@@ -476,111 +507,96 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...';
             
-            // قراءة الملف كبيانات ثنائية
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const fileData = event.target.result;
-                
-                // إعداد بيانات الطالب
-                const uploadData = {
-                    studentName: studentName,
-                    studentGroup: studentGroup,
-                    studentSection: studentSection,
-                    studentComment: studentComment,
-                    fileName: selectedFile.name,
-                    fileType: selectedFile.type,
-                    fileSize: selectedFile.size,
-                    status: 'pending',
-                    timestamp: new Date().toISOString(),
-                    studentId: studentId
-                };
-                
-                // حفظ بيانات الرفع في Firebase
-                saveUploadData(currentTeacher.name, uploadData, fileData);
+            // إعداد بيانات الطالب للرفع
+            const uploadData = {
+                studentName: studentName,
+                studentGroup: studentGroup,
+                studentSection: studentSection,
+                studentComment: studentComment,
+                fileName: selectedFile.name,
+                fileType: selectedFile.type,
+                fileSize: selectedFile.size,
+                status: 'pending',
+                timestamp: new Date().toISOString(),
+                studentId: studentId
             };
-            reader.readAsDataURL(selectedFile);
-        }
-        
-        // حفظ بيانات الرفع في Firebase
-        function saveUploadData(teacherName, uploadData, fileData) {
-            const uploadId = 'upload_' + Date.now();
             
-            // حفظ بيانات الرفع
-            database.ref('uploads/' + teacherName + '/' + uploadId).set(uploadData)
-            .then(() => {
-                // إرسال الرسالة إلى بوت التليجرام
-                sendToTelegramBot(teacherName, uploadData, fileData, uploadId);
-            })
-            .catch(error => {
-                console.error('Error saving upload data:', error);
-                showUploadStatus('حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.', 'danger');
-                resetSubmitButton();
-            });
+            // إرسال الملف والمعلومات مباشرة إلى التليجرام
+            sendFileToTelegram(uploadData);
         }
         
-        // إرسال البيانات إلى بوت التليجرام
-        function sendToTelegramBot(teacherName, uploadData, fileData, uploadId) {
-            const message = `
+        // إرسال الملف مباشرة إلى التليجرام
+        function sendFileToTelegram(uploadData) {
+            const formData = new FormData();
+            formData.append('chat_id', currentTeacher.id);
+            formData.append('document', selectedFile);
+            
+            // إعداد النص الوصفي للملف
+            const caption = `
 📁 ملف جديد من الطالب:
-            
+
 الاسم: ${uploadData.studentName}
 الجروب: ${uploadData.studentGroup}
 السكشن: ${uploadData.studentSection}
 ${uploadData.studentComment ? `التعليق: ${uploadData.studentComment}` : ''}
 الملف: ${uploadData.fileName} (${formatFileSize(uploadData.fileSize)})
-            
-معرف الرفع: ${uploadId}
+
+معرف الطالب: ${uploadData.studentId}
             `.trim();
             
-            // أولاً، إرسال الرسالة النصية
-            fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendMessage`, {
+            formData.append('caption', caption);
+            
+            // إرسال الملف
+            fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: currentTeacher.id,
-                    text: message,
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "✅ قبول", callback_data: `accept_${uploadId}` },
-                                { text: "❌ رفض", callback_data: `reject_${uploadId}` }
-                            ]
-                        ]
-                    }
-                })
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    // ثم إرسال الملف
-                    return fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            chat_id: currentTeacher.id,
-                            document: fileData,
-                            caption: `الملف: ${uploadData.fileName}`
-                        })
+                    // حفظ بيانات الرفع في Firebase (بدون الملف)
+                    const uploadId = 'upload_' + Date.now();
+                    database.ref('uploads/' + currentTeacher.name + '/' + uploadId).set(uploadData)
+                    .then(() => {
+                        // إرسال أزرار القبول والرفض
+                        return fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendMessage`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                chat_id: currentTeacher.id,
+                                text: `📋 ملخص الرفع:\n\n${caption}\n\nمعرف الرفع: ${uploadId}`,
+                                reply_markup: {
+                                    inline_keyboard: [
+                                        [
+                                            { text: "✅ قبول", callback_data: `accept_${uploadId}` },
+                                            { text: "❌ رفض", callback_data: `reject_${uploadId}` }
+                                        ]
+                                    ]
+                                }
+                            })
+                        });
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.ok) {
+                            showUploadStatus('تم إرسال الملف بنجاح. في انتظار مراجعة المعلم.', 'primary');
+                            resetForm();
+                        } else {
+                            throw new Error('Failed to send buttons');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showUploadStatus('تم إرسال الملف ولكن حدث خطأ في إرسال الأزرار.', 'warning');
                     });
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    showUploadStatus('تم إرسال الملف بنجاح. في انتظار مراجعة المعلم.', 'primary');
-                    resetForm();
                 } else {
                     throw new Error('Failed to send file');
                 }
             })
             .catch(error => {
-                console.error('Error sending to Telegram:', error);
+                console.error('Error sending file:', error);
                 showUploadStatus('حدث خطأ أثناء إرسال الملف. يرجى المحاولة مرة أخرى.', 'danger');
             })
             .finally(() => {
