@@ -3,35 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- عنوان الموقع -->
     <title>EduShare</title>
-
-    <!-- أيقونة الموقع (Favicon) -->
     <link rel="icon" type="image/png" href="https://edushare.ct.ws/favicon.png">
-
-    <!-- وصف قصير يظهر في نتائج البحث -->
     <meta name="description" content="منصة لمشاركة وتحميل الملفات التعليمية بسهولة عبر البوت.">
-
-    <!-- كلمات مفتاحية -->
     <meta name="keywords" content="تعليم, ملفات, مشاركة, PDF, كورسات, رفع ملفات, EduShare">
-
-    <!-- السماح لجوجل بأرشفة الموقع -->
     <meta name="robots" content="index, follow">
-
-    <!-- Open Graph (معاينة في فيسبوك/واتساب/جوجل أحيانا) -->
     <meta property="og:title" content="EduShare - منصة مشاركة الملفات التعليمية" />
     <meta property="og:description" content="شارك وحمّل ملفات تعليمية بسهولة عبر EduShare." />
     <meta property="og:image" content="https://edushare.ct.ws/logo.png" />
     <meta property="og:url" content="https://edushare.ct.ws" />
     <meta property="og:type" content="website" />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="EduShare - منصة مشاركة الملفات التعليمية" />
     <meta name="twitter:description" content="شارك وحمّل ملفات تعليمية بسهولة عبر EduShare." />
     <meta name="twitter:image" content="https://edushare.ct.ws/logo.png" />
-
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -200,12 +185,27 @@
         }
 
         .success-message {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
+            background: rgba(46, 125, 50, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
             margin-top: 1.5rem;
             animation: fadeInUp 0.5s ease;
+            color: #fff;
+        }
+
+        .success-message h5 {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .success-icon {
+            color: #4CAF50;
+            font-size: 2.5rem;
         }
 
         .link-box {
@@ -592,6 +592,7 @@
         .input-link .form-control {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
+            border-right: none;
         }
 
         .input-link-btn {
@@ -603,10 +604,35 @@
             padding: 0.875rem 1rem;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .input-link-btn:hover {
             background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* التعديل: أيقونة الرفع باللون الأبيض */
+        .upload-icon {
+            color: #fff !important;
+        }
+
+        /* التعديل: رسالة الخطأ */
+        .name-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .name-error i {
+            color: #ef4444;
+            margin-left: 0.5rem;
         }
     </style>
 </head>
@@ -633,8 +659,9 @@
                             <label for="teacher-name" class="form-label">اسم الادمن</label>
                             <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف وأرقام)" required pattern="[a-zA-Z0-9]+">
                             <div class="form-text text-muted">يجب أن يحتوي على أحرف إنجليزية وأرقام فقط</div>
-                            <div id="name-error" class="alert alert-danger mt-2 hidden" role="alert">
-                                <i class="fas fa-exclamation-triangle me-2"></i>هذا الاسم مسجل بالفعل، يرجى اختيار اسم آخر
+                            <div id="name-error" class="name-error hidden">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>هذا الاسم مسجل بالفعل، يرجى اختيار اسم آخر</span>
                             </div>
                         </div>
                         
@@ -646,7 +673,6 @@
                     
                     <div class="mb-3">
                         <label for="bot-token" class="form-label">
-                            <!-- التعديل: إضافة زر المساعدة للتوكن -->
                             <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank')">
                                 <i class="fas fa-question-circle"></i>
                             </button>
@@ -663,7 +689,6 @@
                     
                     <div class="mb-3">
                         <label for="teacher-id" class="form-label">
-                            <!-- التعديل: إضافة زر المساعدة للـID -->
                             <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank')">
                                 <i class="fas fa-question-circle"></i>
                             </button>
@@ -684,7 +709,7 @@
                 
                 <div id="success-message" class="success-message hidden">
                     <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-check-circle fa-2x me-3"></i>
+                        <i class="fas fa-check-circle success-icon me-3"></i>
                         <div>
                             <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
                             <p class="mb-0">البوت يعمل الآن بنجاح ✅</p>
@@ -761,7 +786,7 @@
                             <div class="mb-4">
                                 <label class="form-label fw-bold">رفع الملف</label>
                                 <div class="upload-area" id="upload-area">
-                                    <i class="fas fa-cloud-upload-alt fa-2x mb-3"></i>
+                                    <i class="fas fa-cloud-upload-alt fa-2x mb-3 upload-icon"></i>
                                     <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
                                     <p class="mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
                                 </div>
@@ -1045,11 +1070,14 @@
         
         // حفظ بيانات الادمن في Firebase
         function saveTeacherData(teacherName, teacherSubject, botToken, teacherId) {
+            const teacherLink = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
+            
             const teacherData = {
                 name: teacherName,
                 subject: teacherSubject,
                 token: botToken,
                 id: teacherId,
+                link: teacherLink,
                 createdAt: new Date().toISOString()
             };
             
@@ -1057,8 +1085,7 @@
             .then(() => {
                 // عرض رسالة النجاح
                 document.getElementById('success-message').classList.remove('hidden');
-                const link = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
-                document.getElementById('teacher-link').textContent = link;
+                document.getElementById('teacher-link').textContent = teacherLink;
                 
                 // التمرير إلى رسالة النجاح
                 document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
