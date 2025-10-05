@@ -747,6 +747,17 @@
             color: #d7ccc8 !important;
         }
 
+        .file-icon {
+            color: #fff !important;
+            font-size: 3rem;
+        }
+
+        .no-records {
+            color: #8d6e63 !important;
+            text-align: center;
+            font-weight: 500;
+        }
+
         .notification-banner {
             background: rgba(76, 175, 80, 0.2);
             border: 1px solid rgba(76, 175, 80, 0.4);
@@ -757,6 +768,7 @@
             color: #fff;
             text-align: center;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes slideInDown {
@@ -776,11 +788,34 @@
             font-weight: bold;
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
         }
 
         .notification-banner a:hover {
             color: #c8e6c9;
             border-bottom-color: #c8e6c9;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
         }
     </style>
 </head>
@@ -932,7 +967,7 @@
                             <div class="mb-4">
                                 <label class="form-label fw-bold">رفع الملف</label>
                                 <div class="upload-area" id="upload-area">
-                                    <i class="fas fa-cloud-upload-alt fa-2x mb-3 upload-icon"></i>
+                                    <i class="fas fa-cloud-upload-alt fa-2x mb-3 upload-icon floating"></i>
                                     <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
                                     <p class="mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
                                 </div>
@@ -956,7 +991,7 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="btn btn-success" id="submit-btn">
+                            <button type="submit" class="btn btn-success pulse-glow" id="submit-btn">
                                 <i class="fas fa-paper-plane me-2"></i>إرسال الملف
                             </button>
                         </form>
@@ -974,7 +1009,7 @@
                         </h5>
                     </div>
                     <div class="records-body" id="personal-records">
-                        <p class="text-center text-muted my-3">لا توجد سجلات سابقة</p>
+                        <p class="no-records my-3">لا توجد سجلات سابقة</p>
                     </div>
                 </div>
             </div>
@@ -1040,6 +1075,7 @@
                 clearFormData();
             }
             
+            initializeNoty();
             checkNotification();
             
             document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
@@ -1076,18 +1112,33 @@
             setupValidation();
         });
 
-        function checkNotification() {
+        function initializeNoty() {
             database.ref('noty').once('value')
             .then(snapshot => {
-                if (snapshot.exists()) {
-                    const notyData = snapshot.val();
-                    if (notyData.active === true) {
-                        showNotification(notyData.message, notyData.link);
-                    }
+                if (!snapshot.exists()) {
+                    const notyData = {
+                        active: false,
+                        message: "",
+                        link: ""
+                    };
+                    database.ref('noty').set(notyData);
                 }
             })
             .catch(error => {
-                console.error('Error checking notification:', error);
+                console.error('Error initializing noty:', error);
+            });
+        }
+
+        function checkNotification() {
+            database.ref('noty').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    const notyData = snapshot.val();
+                    if (notyData.active === true && notyData.message) {
+                        showNotification(notyData.message, notyData.link);
+                    } else {
+                        hideNotification();
+                    }
+                }
             });
         }
 
@@ -1104,6 +1155,14 @@
             
             adminBanner.classList.remove('hidden');
             uploadBanner.classList.remove('hidden');
+        }
+
+        function hideNotification() {
+            const adminBanner = document.getElementById('notification-banner');
+            const uploadBanner = document.getElementById('upload-notification-banner');
+            
+            adminBanner.classList.add('hidden');
+            uploadBanner.classList.add('hidden');
         }
 
         function clearFormData() {
@@ -1432,7 +1491,7 @@
                     previewElement.appendChild(img);
                 } else {
                     const icon = document.createElement('i');
-                    icon.className = getFileIcon(file) + ' fa-3x text-muted';
+                    icon.className = getFileIcon(file) + ' file-icon';
                     previewElement.appendChild(icon);
                 }
                 
@@ -1593,7 +1652,7 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
                 personalRecords.innerHTML = '';
                 
                 if (!snapshot.exists()) {
-                    personalRecords.innerHTML = '<p class="text-center text-muted my-3">لا توجد سجلات سابقة</p>';
+                    personalRecords.innerHTML = '<p class="no-records my-3">لا توجد سجلات سابقة</p>';
                     return;
                 }
                 
@@ -1718,7 +1777,5 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>ipt>
 </body>
 </html>
