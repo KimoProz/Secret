@@ -265,6 +265,1783 @@
             border-color: rgba(34, 197, 94, 0.5);
         }
 
+        .open-link-btn {
+            background: rgba(76, 175, 80, 0.2);
+            color: white;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 15px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.5rem;
+        }
+
+        .open-link-btn:hover {
+            background: rgba(76, 175, 80, 0.3);
+            transform: translateY(-1px);
+            color: white;
+            text-decoration: none;
+        }
+
+        .student-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: slideInRight 0.4s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .student-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .upload-area:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .upload-area.dragover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .file-info {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .file-type-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .records-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .records-header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .records-body {
+            padding: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .record-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .record-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .record-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .record-details {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .subject-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .developer-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .developer-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        @keyframes star {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: star 0.6s ease-out forwards;
+        }
+
+        @keyframes studentAdd {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .student-add {
+            animation: studentAdd 0.4s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header, .card-body {
+                padding: 1.5rem;
+            }
+            
+            .link-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .copy-btn, .open-link-btn {
+                margin-top: 1rem;
+                margin-right: 0;
+                align-self: flex-end;
+            }
+            
+            .record-header {
+                flex-direction: column;
+            }
+            
+            .record-meta {
+                margin-top: 0.5rem;
+            }
+        }
+
+        #upload-page {
+            display: none;
+        }
+
+        .form-text {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .alert {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 15px;
+        }
+
+        .alert-success {
+            border-color: rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .alert-warning {
+            border-color: rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .alert-danger {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .upload-area h5,
+        .upload-area p {
+            color: #fff !important;
+        }
+
+        .help-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin-right: 5px;
+            position: relative;
+        }
+
+        .help-btn:hover {
+            color: #fff;
+        }
+
+        .input-link {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .input-link-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .input-link-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .upload-icon {
+            color: #fff !important;
+        }
+
+        .name-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .name-error i {
+            color: #ef4444;
+            margin-left: 0.5rem;
+        }
+
+        .tooltip-box {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            z-index: 1000;
+            white-space: nowrap;
+            animation: tooltipFade 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes tooltipFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .help-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            animation: tooltipFade 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .first-time-tooltip {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            animation: pulseTooltip 2s infinite;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pulseTooltip {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .tooltip-box, .help-tooltip, .first-time-tooltip {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+                white-space: normal;
+                max-width: 200px;
+                text-align: center;
+            }
+            
+            .first-time-tooltip {
+                top: -50px;
+            }
+        }
+
+        .glow-effect {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .file-preview-img {
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+        }
+
+        .file-name {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .file-size {
+            color: #d7ccc8 !important;
+        }
+
+        .file-icon {
+            color: #fff !important;
+            font-size: 3rem;
+        }
+
+        .no-records {
+            color: #8d6e63 !important;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .notification-banner {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            animation: slideInDown 0.6s ease-out;
+            color: #fff;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification-banner a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .notification-banner a:hover {
+            color: #c8e6c9;
+            border-bottom-color: #c8e6c9;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="admin-page">
+        <div id="notification-banner" class="notification-banner hidden">
+        </div>
+
+        <div class="header">
+            <h1 class="display-5 fw-bold mb-3">EduShare</h1>
+            <p class="mb-0">نظام متكامل لرفع الملفات عبر بوت تليجرام</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-user-tie me-2"></i>لوحة التحكم - إنشاء صفحة رفع
+                </h4>
+            </div>
+            <div class="card-body">
+                <form id="teacher-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="teacher-name" class="form-label">اسم الادمن</label>
+                            <input type="text" class="form-control" id="teacher-name" placeholder="اسم بالإنجليزية فقط (حروف وأرقام)" required pattern="[a-zA-Z0-9]+">
+                            <div class="form-text text-muted">يجب أن يحتوي على أحرف إنجليزية وأرقام فقط</div>
+                            <div id="name-error" class="name-error hidden">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>هذا الاسم مسجل بالفعل، يرجى اختيار اسم آخر</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="teacher-subject" class="form-label">اسم المادة</label>
+                            <input type="text" class="form-control" id="teacher-subject" placeholder="أدخل اسم المادة" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="bot-token" class="form-label">
+                            <button type="button" class="help-btn" id="token-help-btn">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                            توكن البوت
+                        </label>
+                        <input type="password" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
+                        <div class="form-text text-muted">لحماية التوكن، سيتم إخفاؤه تلقائياً عند تحديث الصفحة</div>
+                        <div class="input-link">
+                            <a href="https://t.me/BotFather" target="_blank" class="input-link-btn">
+                                <i class="fas fa-external-link-alt me-2"></i>انتقل إلى BotFather
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="teacher-id" class="form-label">
+                            <button type="button" class="help-btn" id="id-help-btn">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                            ID الحساب
+                        </label>
+                        <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
+                        <div class="input-link">
+                            <a href="https://t.me/I_D1_bot" target="_blank" class="input-link-btn">
+                                <i class="fas fa-external-link-alt me-2"></i>انتقل إلى ID Bot
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submit-teacher-btn">
+                        <i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع
+                    </button>
+                </form>
+                
+                <div id="success-message" class="success-message hidden">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle success-icon me-3"></i>
+                        <div>
+                            <h5 class="mb-1">تم إنشاء صفحة الرفع بنجاح!</h5>
+                            <p class="mb-0">البوت يعمل الآن بنجاح ✅</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <strong>رابط صفحة الرفع:</strong>
+                        <div class="link-box mt-2">
+                            <p class="link-text" id="teacher-link"></p>
+                            <div class="d-flex">
+                                <button class="open-link-btn" id="open-link-btn">
+                                    <i class="fas fa-external-link-alt me-1"></i>فتح الرابط
+                                </button>
+                                <button class="copy-btn" id="copy-link-btn">
+                                    <i class="fas fa-copy me-1"></i>نسخ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <small>يمكنك مشاركة هذا الرابط مع طلابك لاستقبال الملفات</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="upload-page">
+        <div id="upload-notification-banner" class="notification-banner hidden">
+        </div>
+
+        <div class="header text-center">
+            <h1 class="display-5 fw-bold mb-3">املئ البيانات ثم ارفع ملفك</h1>
+            <div class="subject-badge">
+                <i class="fas fa-book me-2"></i>
+                <span id="subject-name">المادة</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="upload-form">
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <label class="form-label fw-bold">أسماء الطلاب</label>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="addStudent()">
+                                        <i class="fas fa-plus me-1"></i>إضافة طالب
+                                    </button>
+                                </div>
+                                <div id="students-container">
+                                    <div class="student-item">
+                                        <input type="text" class="form-control" placeholder="اسم الطالب الأول" required>
+                                    </div>
+                                </div>
+                                <div class="form-text text-muted">يمكنك إضافة حتى 10 طلاب كحد أقصى</div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="student-group" class="form-label">الجروب</label>
+                                    <input type="text" class="form-control" id="student-group" required>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="student-section" class="form-label">السكشن</label>
+                                    <input type="text" class="form-control" id="student-section" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="student-comment" class="form-label">تعليق الطالب</label>
+                                <textarea class="form-control" id="student-comment" rows="3" placeholder="أدخل تعليقك هنا (اختياري)"></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">رفع الملف</label>
+                                <div class="upload-area" id="upload-area">
+                                    <i class="fas fa-cloud-upload-alt fa-2x mb-3 upload-icon floating"></i>
+                                    <h5>انقر لرفع ملف أو اسحب الملف هنا</h5>
+                                    <p class="mb-0">(PDF, Excel, PowerPoint, Word, Images, ZIP, Python, C++, Java)</p>
+                                </div>
+                                <input type="file" id="file-input" class="hidden" accept=".pdf,.xls,.xlsx,.ppt,.pptx,.doc,.docx,.png,.jpg,.jpeg,.zip,.py,.cpp,.java">
+                                <div class="file-info hidden" id="file-info">
+                                    <div class="d-flex align-items-center">
+                                        <div id="file-preview" class="me-3"></div>
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <div id="file-name" class="file-name mb-1"></div>
+                                                    <div id="file-size" class="file-size small mb-2"></div>
+                                                    <span id="file-type-badge" class="file-type-badge"></span>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile()">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success pulse-glow" id="submit-btn">
+                                <i class="fas fa-paper-plane me-2"></i>إرسال الملف
+                            </button>
+                        </form>
+                        
+                        <div id="upload-status" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="records-section">
+                    <div class="records-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-history me-2"></i>سجلاتك الشخصية
+                        </h5>
+                    </div>
+                    <div class="records-body" id="personal-records">
+                        <p class="no-records my-3">لا توجد سجلات سابقة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p class="mb-3">جميع الحقوق محفوظة &copy; 2026</p>
+            <a href="https://www.youtube.com/@Shadow-Dev-2007" target="_blank" class="developer-badge">
+                <i class="fas fa-code me-1"></i>
+                <span>KIMO</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="text-center">
+            <div class="loading-spinner"></div>
+            <div class="loading-text" id="loadingText">جاري التحميل...</div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmPMRk4pvowUnqQb3fCSTZqLRNiU6-ouo",
+            authDomain: "marvel1-654dd.firebaseapp.com",
+            databaseURL: "https://marvel1-654dd-default-rtdb.firebaseio.com",
+            projectId: "marvel1-654dd",
+            storageBucket: "marvel1-654dd.appspot.com",
+            messagingSenderId: "189921979866",
+            appId: "1:189921979866:android:95f48de58a69756be924e3"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        let currentTeacher = null;
+        let selectedFile = null;
+        let studentId = null;
+        let studentCount = 1;
+        const maxStudents = 10;
+        let firstTimeVisit = true;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('visitedBefore')) {
+                firstTimeVisit = true;
+                localStorage.setItem('visitedBefore', 'true');
+            } else {
+                firstTimeVisit = false;
+            }
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const teacherName = urlParams.get('teacher');
+            
+            if (teacherName) {
+                document.getElementById('admin-page').style.display = 'none';
+                document.getElementById('upload-page').style.display = 'block';
+                loadTeacherPage(teacherName);
+            } else {
+                document.getElementById('admin-page').style.display = 'block';
+                document.getElementById('upload-page').style.display = 'none';
+                clearFormData();
+            }
+            
+            initializeNoty();
+            checkNotification();
+            
+            document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
+            document.getElementById('teacher-name').addEventListener('input', checkNameAvailability);
+            document.getElementById('upload-form').addEventListener('submit', handleFileUpload);
+            document.getElementById('upload-area').addEventListener('click', () => {
+                document.getElementById('file-input').click();
+            });
+            
+            document.getElementById('file-input').addEventListener('change', handleFileSelect);
+            
+            const uploadArea = document.getElementById('upload-area');
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFileSelect({ target: { files: e.dataTransfer.files } });
+                }
+            });
+
+            document.getElementById('copy-link-btn').addEventListener('click', copyLink);
+            document.getElementById('open-link-btn').addEventListener('click', openLink);
+            
+            setupTooltips();
+            setupValidation();
+        });
+
+        function initializeNoty() {
+            database.ref('noty').once('value')
+            .then(snapshot => {
+                if (!snapshot.exists()) {
+                    const notyData = {
+                        active: false,
+                        message: "",
+                        link: ""
+                    };
+                    database.ref('noty').set(notyData);
+                }
+            })
+            .catch(error => {
+                console.error('Error initializing noty:', error);
+            });
+        }
+
+        function checkNotification() {
+            database.ref('noty').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    const notyData = snapshot.val();
+                    if (notyData.active === true && notyData.message) {
+                        showNotification(notyData.message, notyData.link);
+                    } else {
+                        hideNotification();
+                    }
+                }
+            });
+        }
+
+        function showNotification(message, link) {
+            const adminBanner = document.getElementById('notification-banner');
+            const uploadBanner = document.getElementById('upload-notification-banner');
+            
+            const bannerHTML = link ? 
+                `<p>${message} <a href="${link}" target="_blank">اضغط هنا</a></p>` :
+                `<p>${message}</p>`;
+            
+            adminBanner.innerHTML = bannerHTML;
+            uploadBanner.innerHTML = bannerHTML;
+            
+            adminBanner.classList.remove('hidden');
+            uploadBanner.classList.remove('hidden');
+        }
+
+        function hideNotification() {
+            const adminBanner = document.getElementById('notification-banner');
+            const uploadBanner = document.getElementById('upload-notification-banner');
+            
+            adminBanner.classList.add('hidden');
+            uploadBanner.classList.add('hidden');
+        }
+
+        function clearFormData() {
+            document.getElementById('teacher-form').reset();
+            document.getElementById('bot-token').value = '';
+            document.getElementById('name-error').classList.add('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+        }
+
+        function setupValidation() {
+            const inputs = document.querySelectorAll('#teacher-form input, #upload-form input, #upload-form textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('error');
+                        this.classList.add('success');
+                    } else {
+                        this.classList.remove('success');
+                        this.classList.add('error');
+                    }
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.checkValidity()) {
+                        this.classList.add('error');
+                    }
+                });
+            });
+        }
+
+        function setupTooltips() {
+            const tokenHelpBtn = document.getElementById('token-help-btn');
+            const idHelpBtn = document.getElementById('id-help-btn');
+            
+            if (firstTimeVisit) {
+                createTooltip(tokenHelpBtn, 'اضغط هنا لمشاهدة كيفية انشاء بوت تليجرام والحصول على توكنه', true);
+                createTooltip(idHelpBtn, 'اضغط هنا لمشاهدة فيديو كيفية استخراج id حسابك في تليجرام', true);
+                
+                setTimeout(() => {
+                    removeAllTooltips();
+                }, 60000);
+            }
+            
+            tokenHelpBtn.addEventListener('mouseenter', () => {
+                createTooltip(tokenHelpBtn, 'اضغط هنا لمشاهدة كيفية انشاء بوت تليجرام والحصول على توكنه');
+            });
+            
+            tokenHelpBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            idHelpBtn.addEventListener('mouseenter', () => {
+                createTooltip(idHelpBtn, 'اضغط هنا لمشاهدة فيديو كيفية استخراج id حسابك في تليجرام');
+            });
+            
+            idHelpBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            tokenHelpBtn.addEventListener('click', () => {
+                window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank');
+            });
+            
+            idHelpBtn.addEventListener('click', () => {
+                window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank');
+            });
+        }
+
+        function createTooltip(element, text, isFirstTime = false) {
+            removeTooltip();
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = isFirstTime ? 'first-time-tooltip' : 'help-tooltip';
+            tooltip.textContent = text;
+            
+            const rect = element.getBoundingClientRect();
+            tooltip.style.left = rect.left + (rect.width / 2) + 'px';
+            tooltip.style.top = rect.top - 10 + 'px';
+            
+            document.body.appendChild(tooltip);
+            element.tooltip = tooltip;
+        }
+
+        function removeTooltip() {
+            const existingTooltip = document.querySelector('.help-tooltip, .first-time-tooltip');
+            if (existingTooltip) {
+                existingTooltip.remove();
+            }
+        }
+
+        function removeAllTooltips() {
+            const tooltips = document.querySelectorAll('.help-tooltip, .first-time-tooltip');
+            tooltips.forEach(tooltip => tooltip.remove());
+        }
+
+        function createStar(x, y) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = x + 'px';
+            star.style.top = y + 'px';
+            star.style.width = (Math.random() * 8 + 4) + 'px';
+            star.style.height = star.style.width;
+            document.body.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 600);
+        }
+        
+        function checkNameAvailability() {
+            const teacherName = document.getElementById('teacher-name').value;
+            const nameError = document.getElementById('name-error');
+            const nameInput = document.getElementById('teacher-name');
+            
+            if (teacherName.length < 3) {
+                nameError.classList.add('hidden');
+                nameInput.classList.remove('error', 'success');
+                return;
+            }
+            
+            database.ref('teachers/' + teacherName).once('value')
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    nameError.classList.remove('hidden');
+                    nameInput.classList.add('error');
+                    nameInput.classList.remove('success');
+                } else {
+                    nameError.classList.add('hidden');
+                    nameInput.classList.remove('error');
+                    nameInput.classList.add('success');
+                }
+            })
+            .catch(error => {
+                console.error('Error checking name availability:', error);
+            });
+        }
+        
+        function handleTeacherSubmit(e) {
+            e.preventDefault();
+            
+            const teacherName = document.getElementById('teacher-name').value;
+            const teacherSubject = document.getElementById('teacher-subject').value;
+            const botToken = document.getElementById('bot-token').value;
+            const teacherId = document.getElementById('teacher-id').value;
+            
+            const nameError = document.getElementById('name-error');
+            if (!nameError.classList.contains('hidden')) {
+                alert('هذا الاسم مسجل بالفعل، يرجى اختيار اسم آخر');
+                return;
+            }
+            
+            showLoading('انتظر جاري اختبار البوت...');
+            
+            const submitBtn = document.getElementById('submit-teacher-btn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري اختبار البوت...';
+            submitBtn.disabled = true;
+            
+            testBot(botToken, teacherId, teacherName, teacherSubject);
+        }
+        
+        function testBot(botToken, teacherId, teacherName, teacherSubject) {
+            const teacherLink = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
+            
+            const message = `🔻𝕎𝕖𝕝𝕔𝕠𝕞𝕖 𝐀𝐃𝐌𝐈𝐍🔻
+╭───────────────────╮
+├•◆ 𝐀𝐝 𝐍𝐚𝐦𝐞 : ${teacherName}
+├•◆ 𝐀𝐝 𝐈𝐝 : <code>${teacherId}</code>
+╰───────────────────╯
+╭──────────────────────────╮
+├•◆ 𝗬𝗼𝘂𝗿 𝗕𝗼𝘁 𝗛𝗮𝘀 𝗕𝗲𝗲𝗻 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗔𝗰𝘁𝗶𝘃𝗮𝘁𝗲𝗱✅
+╰──────────────────────────╯
+⚙️ رابط الصفحة : ${teacherLink}
+
+يمكنك مشاركة هذا الرابط و استقبال الملفات منه`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: teacherId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                
+                const submitBtn = document.getElementById('submit-teacher-btn');
+                submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع';
+                submitBtn.disabled = false;
+                
+                if (data.ok) {
+                    saveTeacherData(teacherName, teacherSubject, botToken, teacherId);
+                    
+                    localStorage.setItem('teacherData', JSON.stringify({
+                        name: teacherName,
+                        subject: teacherSubject,
+                        id: teacherId
+                    }));
+                } else {
+                    alert('فشل في إرسال الرسالة. يرجى التحقق من التوكن وID والمحاولة مرة أخرى.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                hideLoading();
+                
+                const submitBtn = document.getElementById('submit-teacher-btn');
+                submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع';
+                submitBtn.disabled = false;
+                
+                alert('حدث خطأ أثناء اختبار البوت. يرجى التحقق من التوكن وID والمحاولة مرة أخرى.');
+            });
+        }
+        
+        function saveTeacherData(teacherName, teacherSubject, botToken, teacherId) {
+            const teacherLink = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
+            
+            const teacherData = {
+                name: teacherName,
+                subject: teacherSubject,
+                token: botToken,
+                id: teacherId,
+                link: teacherLink,
+                createdAt: new Date().toISOString()
+            };
+            
+            database.ref('teachers/' + teacherName).set(teacherData)
+            .then(() => {
+                document.getElementById('success-message').classList.remove('hidden');
+                document.getElementById('teacher-link').textContent = teacherLink;
+                
+                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error saving teacher data:', error);
+            });
+        }
+        
+        function openLink() {
+            const link = document.getElementById('teacher-link').textContent;
+            if (link) {
+                window.open(link, '_blank');
+            }
+        }
+        
+        function loadTeacherPage(teacherName) {
+            showLoading('جاري تحميل صفحة الادمن...');
+            
+            database.ref('teachers/' + teacherName).once('value')
+            .then(snapshot => {
+                hideLoading();
+                
+                if (snapshot.exists()) {
+                    currentTeacher = snapshot.val();
+                    
+                    document.getElementById('subject-name').textContent = currentTeacher.subject;
+                    
+                    if (!localStorage.getItem('studentId')) {
+                        studentId = 'student_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                        localStorage.setItem('studentId', studentId);
+                    } else {
+                        studentId = localStorage.getItem('studentId');
+                    }
+                    
+                    loadPersonalRecords(teacherName);
+                    
+                } else {
+                    showError('الادمن غير موجود', 'لم يتم العثور على صفحة الادمن المطلوبة');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading teacher:', error);
+                hideLoading();
+                showError('خطأ في التحميل', 'حدث خطأ أثناء تحميل صفحة الادمن');
+            });
+        }
+        
+        function addStudent() {
+            if (studentCount >= maxStudents) {
+                alert(`لا يمكن إضافة أكثر من ${maxStudents} طلاب`);
+                return;
+            }
+            
+            studentCount++;
+            const container = document.getElementById('students-container');
+            const newStudent = document.createElement('div');
+            newStudent.className = 'student-item student-add';
+            newStudent.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <input type="text" class="form-control me-2" placeholder="اسم الطالب ${studentCount}" required>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="removeStudent(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(newStudent);
+        }
+        
+        function removeStudent(button) {
+            if (studentCount <= 1) {
+                alert('يجب أن يكون هناك طالب واحد على الأقل');
+                return;
+            }
+            
+            button.closest('.student-item').remove();
+            studentCount--;
+        }
+        
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                selectedFile = file;
+                
+                document.getElementById('file-name').textContent = file.name;
+                document.getElementById('file-size').textContent = formatFileSize(file.size);
+                
+                const fileType = getFileType(file);
+                document.getElementById('file-type-badge').textContent = fileType;
+                
+                const previewElement = document.getElementById('file-preview');
+                previewElement.innerHTML = '';
+                
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.className = 'file-preview-img';
+                    img.onload = () => URL.revokeObjectURL(img.src);
+                    previewElement.appendChild(img);
+                } else {
+                    const icon = document.createElement('i');
+                    icon.className = getFileIcon(file) + ' file-icon';
+                    previewElement.appendChild(icon);
+                }
+                
+                document.getElementById('file-info').classList.remove('hidden');
+                document.getElementById('upload-area').classList.add('hidden');
+            }
+        }
+        
+        function getFileType(file) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const typeMap = {
+                'pdf': 'PDF',
+                'xls': 'Excel',
+                'xlsx': 'Excel',
+                'ppt': 'PowerPoint',
+                'pptx': 'PowerPoint',
+                'doc': 'Word',
+                'docx': 'Word',
+                'png': 'صورة',
+                'jpg': 'صورة',
+                'jpeg': 'صورة',
+                'zip': 'مضغوط',
+                'py': 'Python',
+                'cpp': 'C++',
+                'java': 'Java'
+            };
+            
+            return typeMap[ext] || 'ملف';
+        }
+        
+        function getFileIcon(file) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'png': 'fas fa-file-image',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'py': 'fab fa-python',
+                'cpp': 'fas fa-file-code',
+                'java': 'fab fa-java'
+            };
+            
+            return iconMap[ext] || 'fas fa-file';
+        }
+        
+        function removeFile() {
+            selectedFile = null;
+            document.getElementById('file-input').value = '';
+            document.getElementById('file-info').classList.add('hidden');
+            document.getElementById('upload-area').classList.remove('hidden');
+        }
+        
+        function handleFileUpload(e) {
+            e.preventDefault();
+            
+            if (!selectedFile) {
+                alert('يرجى اختيار ملف لرفعه');
+                return;
+            }
+            
+            const studentInputs = document.querySelectorAll('#students-container input');
+            const studentNames = Array.from(studentInputs).map(input => input.value).filter(name => name.trim() !== '');
+            
+            if (studentNames.length === 0) {
+                alert('يرجى إدخال اسم طالب واحد على الأقل');
+                return;
+            }
+            
+            const studentGroup = document.getElementById('student-group').value;
+            const studentSection = document.getElementById('student-section').value;
+            const studentComment = document.getElementById('student-comment').value;
+            
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...';
+            
+            const uploadData = {
+                studentNames: studentNames,
+                studentGroup: studentGroup,
+                studentSection: studentSection,
+                studentComment: studentComment,
+                fileName: selectedFile.name,
+                fileType: getFileType(selectedFile),
+                fileSize: selectedFile.size,
+                fileExt: selectedFile.name.split('.').pop().toLowerCase(),
+                teacherName: currentTeacher.name,
+                teacherSubject: currentTeacher.subject,
+                timestamp: new Date().toISOString(),
+                studentId: studentId
+            };
+            
+            sendFileToTelegram(uploadData);
+        }
+        
+        function sendFileToTelegram(uploadData) {
+            const formData = new FormData();
+            formData.append('chat_id', currentTeacher.id);
+            formData.append('document', selectedFile);
+            
+            const studentsText = uploadData.studentNames.map((name, index) => `${index+1}- ${name}`).join('\n');
+            
+            const caption = `
+الملف: ${uploadData.fileName}
+
+نوع الملف: ${uploadData.fileType}
+حجم الملف: ${formatFileSize(uploadData.fileSize)}
+أسماء الطلاب:
+${studentsText}
+الجروب: ${uploadData.studentGroup}
+السكشن: ${uploadData.studentSection}
+المادة: ${uploadData.teacherSubject}
+${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComment}` : ''}
+            `.trim();
+            
+            formData.append('caption', caption);
+            
+            fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    const uploadId = 'upload_' + Date.now();
+                    database.ref('uploads/' + currentTeacher.name + '/' + uploadId).set(uploadData)
+                    .then(() => {
+                        showUploadStatus('تم إرسال الملف بنجاح إلى الادمن.', 'success');
+                        resetForm();
+                        loadPersonalRecords(currentTeacher.name);
+                    })
+                    .catch(error => {
+                        console.error('Error saving upload data:', error);
+                        showUploadStatus('تم إرسال الملف ولكن حدث خطأ في حفظ البيانات.', 'warning');
+                    });
+                } else {
+                    throw new Error('Failed to send file');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending file:', error);
+                showUploadStatus('حدث خطأ أثناء إرسال الملف. يرجى المحاولة مرة أخرى.', 'danger');
+            })
+            .finally(() => {
+                resetSubmitButton();
+            });
+        }
+        
+        function loadPersonalRecords(teacherName) {
+            database.ref('uploads/' + teacherName).orderByChild('studentId').equalTo(studentId).on('value', (snapshot) => {
+                const personalRecords = document.getElementById('personal-records');
+                personalRecords.innerHTML = '';
+                
+                if (!snapshot.exists()) {
+                    personalRecords.innerHTML = '<p class="no-records my-3">لا توجد سجلات سابقة</p>';
+                    return;
+                }
+                
+                const records = [];
+                snapshot.forEach((childSnapshot) => {
+                    records.push(childSnapshot.val());
+                });
+                
+                records.reverse();
+                
+                records.forEach(record => {
+                    const recordElement = document.createElement('div');
+                    recordElement.className = 'record-item';
+                    recordElement.innerHTML = `
+                        <div class="record-header">
+                            <h6 class="mb-0">${record.fileName}</h6>
+                            <div class="text-muted small">${formatDate(record.timestamp)}</div>
+                        </div>
+                        <div class="record-meta">
+                            <span class="meta-badge">${record.fileType}</span>
+                            <span class="meta-badge">${formatFileSize(record.fileSize)}</span>
+                        </div>
+                        <div class="record-details mt-2">
+                            <div><i class="fas fa-users me-1"></i>${record.studentNames.length} طالب</div>
+                            <div><i class="fas fa-layer-group me-1"></i>${record.studentGroup} - ${record.studentSection}</div>
+                        </div>
+                    `;
+                    
+                    personalRecords.appendChild(recordElement);
+                });
+            });
+        }
+        
+        function showUploadStatus(message, type) {
+            const statusElement = document.getElementById('upload-status');
+            const alertClass = type === 'success' ? 'alert-success' : type === 'warning' ? 'alert-warning' : 'alert-danger';
+            
+            statusElement.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+        
+        function resetSubmitButton() {
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الملف';
+        }
+        
+        function resetForm() {
+            document.getElementById('upload-form').reset();
+            removeFile();
+            
+            const container = document.getElementById('students-container');
+            container.innerHTML = '<div class="student-item"><input type="text" class="form-control" placeholder="اسم الطالب الأول" required></div>';
+            studentCount = 1;
+        }
+        
+        function copyLink() {
+            const linkText = document.getElementById('teacher-link').textContent;
+            const copyBtn = document.getElementById('copy-link-btn');
+            
+            navigator.clipboard.writeText(linkText).then(() => {
+                const rect = copyBtn.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 30 + 10;
+                        createStar(
+                            x + Math.cos(angle) * distance,
+                            y + Math.sin(angle) * distance
+                        );
+                    }, i * 100);
+                }
+                
+                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i>تم النسخ';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy me-1"></i>نسخ';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        function showLoading(text = 'جاري التحميل...') {
+            document.getElementById('loadingText').textContent = text;
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+        
+        function showError(title, message) {
+            const statusElement = document.getElementById('upload-status');
+            statusElement.innerHTML = `
+                <div class="alert alert-danger">
+                    <h5>${title}</h5>
+                    <p class="mb-0">${message}</p>
+                </div>
+            `;
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG') + ' ' + date.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .card-header {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control, .form-select, textarea.form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 0.875rem 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-control.success {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-control.error {
+            border-color: #f44336;
+            box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
+        }
+
+        .form-control:focus, .form-select:focus, textarea.form-control:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+            outline: none;
+            color: #fff;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-success {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-success:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            background: rgba(46, 125, 50, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            animation: fadeInUp 0.5s ease;
+            color: #fff;
+        }
+
+        .success-message h5 {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .success-icon {
+            color: #4CAF50;
+            font-size: 2.5rem;
+        }
+
+        .link-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .link-box:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .link-text {
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            word-break: break-all;
+            margin: 0;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: rgba(34, 197, 94, 0.3);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+
         .student-item {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 15px;
