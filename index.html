@@ -111,7 +111,7 @@
         .form-control, .form-select, textarea.form-control {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 0.875rem 1rem;
             color: #fff;
             transition: all 0.3s ease;
@@ -133,7 +133,7 @@
         .btn-primary {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 1rem 2rem;
             font-weight: 600;
             color: #fff;
@@ -171,7 +171,7 @@
         .btn-success {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 1rem 2rem;
             font-weight: 600;
             color: #fff;
@@ -211,7 +211,7 @@
         .link-box {
             background: rgba(255, 255, 255, 0.08);
             border: 1px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 1rem;
             margin: 1rem 0;
             display: flex;
@@ -237,7 +237,7 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 15px;
             padding: 0.5rem 1rem;
             margin-right: 1rem;
             transition: all 0.3s ease;
@@ -257,7 +257,7 @@
 
         .student-item {
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 1rem;
             margin-bottom: 1rem;
             border-left: 4px solid rgba(255, 255, 255, 0.3);
@@ -283,7 +283,7 @@
 
         .upload-area {
             border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 2.5rem 1rem;
             text-align: center;
             cursor: pointer;
@@ -303,7 +303,7 @@
 
         .file-info {
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 1.5rem;
             margin-top: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -324,7 +324,7 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
@@ -343,7 +343,7 @@
 
         .record-item {
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 1.25rem;
             margin-bottom: 1rem;
             border-left: 4px solid rgba(255, 255, 255, 0.3);
@@ -468,7 +468,6 @@
             font-weight: 600;
         }
 
-        /* تأثير النجوم عند النسخ */
         @keyframes star {
             0% {
                 transform: scale(1);
@@ -488,7 +487,6 @@
             animation: star 0.6s ease-out forwards;
         }
 
-        /* تأثير إضافة طالب */
         @keyframes studentAdd {
             0% {
                 transform: scale(0.8);
@@ -545,7 +543,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
-            border-radius: 10px;
+            border-radius: 15px;
         }
 
         .alert-success {
@@ -563,13 +561,11 @@
             background: rgba(239, 68, 68, 0.1);
         }
 
-        /* التعديل: لون النص داخل منطقة الرفع */
         .upload-area h5,
         .upload-area p {
             color: #fff !important;
         }
 
-        /* التعديل: أزرار المساعدة */
         .help-btn {
             background: transparent;
             border: none;
@@ -577,13 +573,13 @@
             cursor: pointer;
             transition: color 0.3s ease;
             margin-right: 5px;
+            position: relative;
         }
 
         .help-btn:hover {
             color: #fff;
         }
 
-        /* التعديل: روابط المستطيلات */
         .input-link {
             display: flex;
             align-items: center;
@@ -599,7 +595,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-left: none;
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 20px 20px 0;
             color: #fff;
             padding: 0.875rem 1rem;
             transition: all 0.3s ease;
@@ -607,22 +603,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .input-link-btn:hover {
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* التعديل: أيقونة الرفع باللون الأبيض */
         .upload-icon {
             color: #fff !important;
         }
 
-        /* التعديل: رسالة الخطأ */
         .name-error {
             background: rgba(239, 68, 68, 0.1);
             border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 1rem;
             margin-top: 0.5rem;
             color: #fff;
@@ -634,18 +629,106 @@
             color: #ef4444;
             margin-left: 0.5rem;
         }
+
+        .tooltip-box {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            z-index: 1000;
+            white-space: nowrap;
+            animation: tooltipFade 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes tooltipFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .help-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            animation: tooltipFade 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .first-time-tooltip {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            animation: pulseTooltip 2s infinite;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pulseTooltip {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .tooltip-box, .help-tooltip, .first-time-tooltip {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+                white-space: normal;
+                max-width: 200px;
+                text-align: center;
+            }
+            
+            .first-time-tooltip {
+                top: -50px;
+            }
+        }
+
+        .glow-effect {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- صفحة الادمن -->
     <div class="container" id="admin-page">
-        <!-- الهيدر -->
         <div class="header">
             <h1 class="display-5 fw-bold mb-3">EduShare</h1>
             <p class="mb-0">نظام متكامل لرفع الملفات عبر بوت تليجرام</p>
         </div>
 
-        <!-- لوحة التحكم -->
         <div class="card">
             <div class="card-header">
                 <h4 class="mb-0">
@@ -673,14 +756,14 @@
                     
                     <div class="mb-3">
                         <label for="bot-token" class="form-label">
-                            <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank')">
+                            <button type="button" class="help-btn" id="token-help-btn">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                             توكن البوت
                         </label>
                         <div class="input-link">
                             <input type="password" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
-                            <button type="button" class="input-link-btn" onclick="window.open('https://t.me/BotFather', '_blank')">
+                            <button type="button" class="input-link-btn" id="token-link-btn">
                                 <i class="fas fa-external-link-alt"></i>
                             </button>
                         </div>
@@ -689,14 +772,14 @@
                     
                     <div class="mb-3">
                         <label for="teacher-id" class="form-label">
-                            <button type="button" class="help-btn" onclick="window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank')">
+                            <button type="button" class="help-btn" id="id-help-btn">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                             ID الحساب
                         </label>
                         <div class="input-link">
                             <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
-                            <button type="button" class="input-link-btn" onclick="window.open('https://t.me/I_D1_bot', '_blank')">
+                            <button type="button" class="input-link-btn" id="id-link-btn">
                                 <i class="fas fa-external-link-alt"></i>
                             </button>
                         </div>
@@ -732,9 +815,7 @@
         </div>
     </div>
 
-    <!-- صفحة الرفع -->
     <div class="container" id="upload-page">
-        <!-- الهيدر -->
         <div class="header text-center">
             <h1 class="display-5 fw-bold mb-3">املئ البيانات ثم ارفع ملفك</h1>
             <div class="subject-badge">
@@ -744,12 +825,10 @@
         </div>
 
         <div class="row">
-            <!-- نموذج الرفع -->
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         <form id="upload-form">
-                            <!-- أسماء الطلاب -->
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <label class="form-label fw-bold">أسماء الطلاب</label>
@@ -782,7 +861,6 @@
                                 <textarea class="form-control" id="student-comment" rows="3" placeholder="أدخل تعليقك هنا (اختياري)"></textarea>
                             </div>
                             
-                            <!-- رفع الملف -->
                             <div class="mb-4">
                                 <label class="form-label fw-bold">رفع الملف</label>
                                 <div class="upload-area" id="upload-area">
@@ -820,7 +898,6 @@
                 </div>
             </div>
             
-            <!-- السجلات الشخصية -->
             <div class="col-lg-4">
                 <div class="records-section">
                     <div class="records-header">
@@ -836,7 +913,6 @@
         </div>
     </div>
 
-    <!-- الفوتر -->
     <div class="footer">
         <div class="container">
             <p class="mb-3">جميع الحقوق محفوظة &copy; 2026</p>
@@ -847,7 +923,6 @@
         </div>
     </div>
 
-    <!-- شاشة التحميل -->
     <div class="loading-overlay hidden" id="loadingOverlay">
         <div class="text-center">
             <div class="loading-spinner"></div>
@@ -856,7 +931,6 @@
     </div>
 
     <script>
-        // تهيئة Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBmPMRk4pvowUnqQb3fCSTZqLRNiU6-ouo",
             authDomain: "marvel1-654dd.firebaseapp.com",
@@ -867,54 +941,46 @@
             appId: "1:189921979866:android:95f48de58a69756be924e3"
         };
         
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         
-        // متغيرات عامة
         let currentTeacher = null;
         let selectedFile = null;
         let studentId = null;
         let studentCount = 1;
         const maxStudents = 10;
+        let firstTimeVisit = true;
         
-        // عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // تحميل البيانات المحفوظة للمعلم
-            loadSavedTeacherData();
+            if (!localStorage.getItem('visitedBefore')) {
+                firstTimeVisit = true;
+                localStorage.setItem('visitedBefore', 'true');
+            } else {
+                firstTimeVisit = false;
+            }
             
-            // التحقق من وجود معلم في الرابط
             const urlParams = new URLSearchParams(window.location.search);
             const teacherName = urlParams.get('teacher');
             
             if (teacherName) {
-                // إظهار صفحة الرفع وإخفاء صفحة الادمن
                 document.getElementById('admin-page').style.display = 'none';
                 document.getElementById('upload-page').style.display = 'block';
                 loadTeacherPage(teacherName);
             } else {
-                // إظهار صفحة الادمن وإخفاء صفحة الرفع
                 document.getElementById('admin-page').style.display = 'block';
                 document.getElementById('upload-page').style.display = 'none';
+                clearFormData();
             }
             
-            // إعداد استمارة الادمن
             document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
-            
-            // التحقق من تكرار الاسم أثناء الكتابة
             document.getElementById('teacher-name').addEventListener('input', checkNameAvailability);
-            
-            // إعداد استمارة الرفع
             document.getElementById('upload-form').addEventListener('submit', handleFileUpload);
-            
-            // إعداد منطقة الرفع
             document.getElementById('upload-area').addEventListener('click', () => {
                 document.getElementById('file-input').click();
             });
             
             document.getElementById('file-input').addEventListener('change', handleFileSelect);
             
-            // إعداد سحب وإفلات الملفات
             const uploadArea = document.getElementById('upload-area');
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
@@ -934,11 +1000,109 @@
                 }
             });
 
-            // إعداد زر نسخ الرابط
             document.getElementById('copy-link-btn').addEventListener('click', copyLink);
+            
+            setupTooltips();
         });
 
-        // تأثير النجوم عند النسخ
+        function clearFormData() {
+            document.getElementById('teacher-form').reset();
+            document.getElementById('bot-token').value = '';
+            document.getElementById('name-error').classList.add('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+        }
+
+        function setupTooltips() {
+            const tokenHelpBtn = document.getElementById('token-help-btn');
+            const idHelpBtn = document.getElementById('id-help-btn');
+            const tokenLinkBtn = document.getElementById('token-link-btn');
+            const idLinkBtn = document.getElementById('id-link-btn');
+            
+            if (firstTimeVisit) {
+                createTooltip(tokenHelpBtn, 'اضغط هنا لمشاهدة كيفية انشاء بوت تليجرام والحصول على توكنه', true);
+                createTooltip(idHelpBtn, 'اضغط هنا لمشاهدة فيديو كيفية استخراج id حسابك في تليجرام', true);
+                
+                setTimeout(() => {
+                    removeAllTooltips();
+                }, 60000);
+            }
+            
+            tokenHelpBtn.addEventListener('mouseenter', () => {
+                createTooltip(tokenHelpBtn, 'اضغط هنا لمشاهدة كيفية انشاء بوت تليجرام والحصول على توكنه');
+            });
+            
+            tokenHelpBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            idHelpBtn.addEventListener('mouseenter', () => {
+                createTooltip(idHelpBtn, 'اضغط هنا لمشاهدة فيديو كيفية استخراج id حسابك في تليجرام');
+            });
+            
+            idHelpBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            tokenLinkBtn.addEventListener('mouseenter', () => {
+                createTooltip(tokenLinkBtn, 'اضغط للانتقال الي BotFather');
+            });
+            
+            tokenLinkBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            idLinkBtn.addEventListener('mouseenter', () => {
+                createTooltip(idLinkBtn, 'اضغط للانتقال الي ID Bot');
+            });
+            
+            idLinkBtn.addEventListener('mouseleave', () => {
+                removeTooltip();
+            });
+            
+            tokenHelpBtn.addEventListener('click', () => {
+                window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank');
+            });
+            
+            idHelpBtn.addEventListener('click', () => {
+                window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank');
+            });
+            
+            tokenLinkBtn.addEventListener('click', () => {
+                window.open('https://t.me/BotFather', '_blank');
+            });
+            
+            idLinkBtn.addEventListener('click', () => {
+                window.open('https://t.me/I_D1_bot', '_blank');
+            });
+        }
+
+        function createTooltip(element, text, isFirstTime = false) {
+            removeTooltip();
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = isFirstTime ? 'first-time-tooltip' : 'help-tooltip';
+            tooltip.textContent = text;
+            
+            const rect = element.getBoundingClientRect();
+            tooltip.style.left = rect.left + (rect.width / 2) + 'px';
+            tooltip.style.top = rect.top - 10 + 'px';
+            
+            document.body.appendChild(tooltip);
+            element.tooltip = tooltip;
+        }
+
+        function removeTooltip() {
+            const existingTooltip = document.querySelector('.help-tooltip, .first-time-tooltip');
+            if (existingTooltip) {
+                existingTooltip.remove();
+            }
+        }
+
+        function removeAllTooltips() {
+            const tooltips = document.querySelectorAll('.help-tooltip, .first-time-tooltip');
+            tooltips.forEach(tooltip => tooltip.remove());
+        }
+
         function createStar(x, y) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -953,19 +1117,6 @@
             }, 600);
         }
         
-        // تحميل البيانات المحفوظة للمعلم
-        function loadSavedTeacherData() {
-            const savedData = localStorage.getItem('teacherData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                document.getElementById('teacher-name').value = data.name || '';
-                document.getElementById('teacher-subject').value = data.subject || '';
-                // لا نقوم بتحميل التوكن للحفاظ على الأمان
-                document.getElementById('teacher-id').value = data.id || '';
-            }
-        }
-        
-        // التحقق من توفر الاسم
         function checkNameAvailability() {
             const teacherName = document.getElementById('teacher-name').value;
             const nameError = document.getElementById('name-error');
@@ -975,7 +1126,6 @@
                 return;
             }
             
-            // التحقق من Firebase إذا كان الاسم موجود بالفعل
             database.ref('teachers/' + teacherName).once('value')
             .then(snapshot => {
                 if (snapshot.exists()) {
@@ -989,7 +1139,6 @@
             });
         }
         
-        // معالجة إدخال بيانات الادمن
         function handleTeacherSubmit(e) {
             e.preventDefault();
             
@@ -998,26 +1147,21 @@
             const botToken = document.getElementById('bot-token').value;
             const teacherId = document.getElementById('teacher-id').value;
             
-            // التحقق من أن الاسم غير مكرر
             const nameError = document.getElementById('name-error');
             if (!nameError.classList.contains('hidden')) {
                 alert('هذا الاسم مسجل بالفعل، يرجى اختيار اسم آخر');
                 return;
             }
             
-            // عرض شاشة التحميل
             showLoading('انتظر جاري اختبار البوت...');
             
-            // تغيير نص الزر
             const submitBtn = document.getElementById('submit-teacher-btn');
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري اختبار البوت...';
             submitBtn.disabled = true;
             
-            // اختبار البوت
             testBot(botToken, teacherId, teacherName, teacherSubject);
         }
         
-        // اختبار البوت
         function testBot(botToken, teacherId, teacherName, teacherSubject) {
             const message = `✅ تم ربط البوت بنجاح!\n\nاسم الادمن: ${teacherName}\nالمادة: ${teacherSubject}\n\nيمكنك الآن استقبال ملفات الطلاب.`;
             
@@ -1035,20 +1179,16 @@
             .then(data => {
                 hideLoading();
                 
-                // إعادة تعيين الزر
                 const submitBtn = document.getElementById('submit-teacher-btn');
                 submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع';
                 submitBtn.disabled = false;
                 
                 if (data.ok) {
-                    // حفظ بيانات الادمن في Firebase
                     saveTeacherData(teacherName, teacherSubject, botToken, teacherId);
                     
-                    // حفظ في LocalStorage (بدون التوكن)
                     localStorage.setItem('teacherData', JSON.stringify({
                         name: teacherName,
                         subject: teacherSubject,
-                        // لا نقوم بحفظ التوكن
                         id: teacherId
                     }));
                 } else {
@@ -1059,7 +1199,6 @@
                 console.error('Error:', error);
                 hideLoading();
                 
-                // إعادة تعيين الزر
                 const submitBtn = document.getElementById('submit-teacher-btn');
                 submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>تأكيد وإنشاء صفحة الرفع';
                 submitBtn.disabled = false;
@@ -1068,7 +1207,6 @@
             });
         }
         
-        // حفظ بيانات الادمن في Firebase
         function saveTeacherData(teacherName, teacherSubject, botToken, teacherId) {
             const teacherLink = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
             
@@ -1083,11 +1221,9 @@
             
             database.ref('teachers/' + teacherName).set(teacherData)
             .then(() => {
-                // عرض رسالة النجاح
                 document.getElementById('success-message').classList.remove('hidden');
                 document.getElementById('teacher-link').textContent = teacherLink;
                 
-                // التمرير إلى رسالة النجاح
                 document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
             })
             .catch(error => {
@@ -1095,7 +1231,6 @@
             });
         }
         
-        // تحميل صفحة الادمن
         function loadTeacherPage(teacherName) {
             showLoading('جاري تحميل صفحة الادمن...');
             
@@ -1106,10 +1241,8 @@
                 if (snapshot.exists()) {
                     currentTeacher = snapshot.val();
                     
-                    // تحديث عنوان الصفحة
                     document.getElementById('subject-name').textContent = currentTeacher.subject;
                     
-                    // إنشاء معرف فريد للطالب إذا لم يكن موجود
                     if (!localStorage.getItem('studentId')) {
                         studentId = 'student_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                         localStorage.setItem('studentId', studentId);
@@ -1117,7 +1250,6 @@
                         studentId = localStorage.getItem('studentId');
                     }
                     
-                    // تحميل السجلات الشخصية
                     loadPersonalRecords(teacherName);
                     
                 } else {
@@ -1131,7 +1263,6 @@
             });
         }
         
-        // إضافة طالب جديد
         function addStudent() {
             if (studentCount >= maxStudents) {
                 alert(`لا يمكن إضافة أكثر من ${maxStudents} طلاب`);
@@ -1153,7 +1284,6 @@
             container.appendChild(newStudent);
         }
         
-        // إزالة طالب
         function removeStudent(button) {
             if (studentCount <= 1) {
                 alert('يجب أن يكون هناك طالب واحد على الأقل');
@@ -1164,21 +1294,17 @@
             studentCount--;
         }
         
-        // معالجة اختيار الملف
         function handleFileSelect(e) {
             const file = e.target.files[0];
             if (file) {
                 selectedFile = file;
                 
-                // عرض معلومات الملف
                 document.getElementById('file-name').textContent = file.name;
                 document.getElementById('file-size').textContent = formatFileSize(file.size);
                 
-                // عرض نوع الملف
                 const fileType = getFileType(file);
                 document.getElementById('file-type-badge').textContent = fileType;
                 
-                // عرض معاينة إذا كان ملف صورة
                 const previewElement = document.getElementById('file-preview');
                 previewElement.innerHTML = '';
                 
@@ -1201,7 +1327,6 @@
             }
         }
         
-        // الحصول على نوع الملف
         function getFileType(file) {
             const ext = file.name.split('.').pop().toLowerCase();
             const typeMap = {
@@ -1224,7 +1349,6 @@
             return typeMap[ext] || 'ملف';
         }
         
-        // الحصول على أيقونة الملف
         function getFileIcon(file) {
             const ext = file.name.split('.').pop().toLowerCase();
             const iconMap = {
@@ -1247,7 +1371,6 @@
             return iconMap[ext] || 'fas fa-file';
         }
         
-        // إزالة الملف المختار
         function removeFile() {
             selectedFile = null;
             document.getElementById('file-input').value = '';
@@ -1255,7 +1378,6 @@
             document.getElementById('upload-area').classList.remove('hidden');
         }
         
-        // معالجة رفع الملف
         function handleFileUpload(e) {
             e.preventDefault();
             
@@ -1264,7 +1386,6 @@
                 return;
             }
             
-            // جمع أسماء الطلاب
             const studentInputs = document.querySelectorAll('#students-container input');
             const studentNames = Array.from(studentInputs).map(input => input.value).filter(name => name.trim() !== '');
             
@@ -1277,12 +1398,10 @@
             const studentSection = document.getElementById('student-section').value;
             const studentComment = document.getElementById('student-comment').value;
             
-            // تعطيل زر الإرسال
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...';
             
-            // إعداد بيانات الطالب للرفع
             const uploadData = {
                 studentNames: studentNames,
                 studentGroup: studentGroup,
@@ -1298,17 +1417,14 @@
                 studentId: studentId
             };
             
-            // إرسال الملف والمعلومات مباشرة إلى التليجرام
             sendFileToTelegram(uploadData);
         }
         
-        // إرسال الملف مباشرة إلى التليجرام
         function sendFileToTelegram(uploadData) {
             const formData = new FormData();
             formData.append('chat_id', currentTeacher.id);
             formData.append('document', selectedFile);
             
-            // إعداد النص الوصفي للملف
             const studentsText = uploadData.studentNames.map((name, index) => `${index+1}- ${name}`).join('\n');
             
             const caption = `
@@ -1326,7 +1442,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             
             formData.append('caption', caption);
             
-            // إرسال الملف
             fetch(`https://api.telegram.org/bot${currentTeacher.token}/sendDocument`, {
                 method: 'POST',
                 body: formData
@@ -1334,7 +1449,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    // حفظ بيانات الرفع في Firebase (بدون الملف)
                     const uploadId = 'upload_' + Date.now();
                     database.ref('uploads/' + currentTeacher.name + '/' + uploadId).set(uploadData)
                     .then(() => {
@@ -1359,7 +1473,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             });
         }
         
-        // تحميل السجلات الشخصية
         function loadPersonalRecords(teacherName) {
             database.ref('uploads/' + teacherName).orderByChild('studentId').equalTo(studentId).on('value', (snapshot) => {
                 const personalRecords = document.getElementById('personal-records');
@@ -1375,7 +1488,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
                     records.push(childSnapshot.val());
                 });
                 
-                // عكس الترتيب لعرض الأحدث أولاً
                 records.reverse();
                 
                 records.forEach(record => {
@@ -1401,7 +1513,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             });
         }
         
-        // عرض حالة الرفع
         function showUploadStatus(message, type) {
             const statusElement = document.getElementById('upload-status');
             const alertClass = type === 'success' ? 'alert-success' : type === 'warning' ? 'alert-warning' : 'alert-danger';
@@ -1414,31 +1525,26 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             `;
         }
         
-        // إعادة تعيين زر الإرسال
         function resetSubmitButton() {
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الملف';
         }
         
-        // إعادة تعيين الاستمارة
         function resetForm() {
             document.getElementById('upload-form').reset();
             removeFile();
             
-            // إعادة تعيين أسماء الطلاب
             const container = document.getElementById('students-container');
             container.innerHTML = '<div class="student-item"><input type="text" class="form-control" placeholder="اسم الطالب الأول" required></div>';
             studentCount = 1;
         }
         
-        // نسخ الرابط
         function copyLink() {
             const linkText = document.getElementById('teacher-link').textContent;
             const copyBtn = document.getElementById('copy-link-btn');
             
             navigator.clipboard.writeText(linkText).then(() => {
-                // تأثير النجوم
                 const rect = copyBtn.getBoundingClientRect();
                 const x = rect.left + rect.width / 2;
                 const y = rect.top + rect.height / 2;
@@ -1454,7 +1560,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
                     }, i * 100);
                 }
                 
-                // تغيير مظهر الزر مؤقتًا
                 copyBtn.innerHTML = '<i class="fas fa-check me-1"></i>تم النسخ';
                 copyBtn.classList.add('copied');
                 
@@ -1465,18 +1570,15 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             });
         }
         
-        // عرض شاشة التحميل
         function showLoading(text = 'جاري التحميل...') {
             document.getElementById('loadingText').textContent = text;
             document.getElementById('loadingOverlay').classList.remove('hidden');
         }
         
-        // إخفاء شاشة التحميل
         function hideLoading() {
             document.getElementById('loadingOverlay').classList.add('hidden');
         }
         
-        // عرض خطأ
         function showError(title, message) {
             const statusElement = document.getElementById('upload-status');
             statusElement.innerHTML = `
@@ -1487,7 +1589,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
             `;
         }
         
-        // وظائف مساعدة
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -1502,6 +1603,9 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
         }
     </script>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
