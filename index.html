@@ -118,6 +118,16 @@
             width: 100%;
         }
 
+        .form-control.success {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-control.error {
+            border-color: #f44336;
+            box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
+        }
+
         .form-control:focus, .form-select:focus, textarea.form-control:focus {
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
@@ -583,31 +593,30 @@
         .input-link {
             display: flex;
             align-items: center;
-        }
-
-        .input-link .form-control {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: none;
+            margin-top: 0.5rem;
         }
 
         .input-link-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-left: none;
-            border-radius: 0 20px 20px 0;
+            border-radius: 20px;
             color: #fff;
-            padding: 0.875rem 1rem;
+            padding: 0.5rem 1rem;
             transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
         }
 
         .input-link-btn:hover {
             background: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            color: #fff;
         }
 
         .upload-icon {
@@ -720,10 +729,66 @@
                 box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
             }
         }
+
+        .file-preview-img {
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+        }
+
+        .file-name {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .file-size {
+            color: #d7ccc8 !important;
+        }
+
+        .notification-banner {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            animation: slideInDown 0.6s ease-out;
+            color: #fff;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification-banner a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .notification-banner a:hover {
+            color: #c8e6c9;
+            border-bottom-color: #c8e6c9;
+        }
     </style>
 </head>
 <body>
     <div class="container" id="admin-page">
+        <div id="notification-banner" class="notification-banner hidden">
+        </div>
+
         <div class="header">
             <h1 class="display-5 fw-bold mb-3">EduShare</h1>
             <p class="mb-0">نظام متكامل لرفع الملفات عبر بوت تليجرام</p>
@@ -761,13 +826,13 @@
                             </button>
                             توكن البوت
                         </label>
-                        <div class="input-link">
-                            <input type="password" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
-                            <button type="button" class="input-link-btn" id="token-link-btn">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
-                        </div>
+                        <input type="password" class="form-control" id="bot-token" placeholder="أدخل توكن البوت" required>
                         <div class="form-text text-muted">لحماية التوكن، سيتم إخفاؤه تلقائياً عند تحديث الصفحة</div>
+                        <div class="input-link">
+                            <a href="https://t.me/BotFather" target="_blank" class="input-link-btn">
+                                <i class="fas fa-external-link-alt me-2"></i>انتقل إلى BotFather
+                            </a>
+                        </div>
                     </div>
                     
                     <div class="mb-3">
@@ -777,11 +842,11 @@
                             </button>
                             ID الحساب
                         </label>
+                        <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
                         <div class="input-link">
-                            <input type="text" class="form-control" id="teacher-id" placeholder="أدخل ID حسابك في التليجرام" required>
-                            <button type="button" class="input-link-btn" id="id-link-btn">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
+                            <a href="https://t.me/I_D1_bot" target="_blank" class="input-link-btn">
+                                <i class="fas fa-external-link-alt me-2"></i>انتقل إلى ID Bot
+                            </a>
                         </div>
                     </div>
                     
@@ -816,6 +881,9 @@
     </div>
 
     <div class="container" id="upload-page">
+        <div id="upload-notification-banner" class="notification-banner hidden">
+        </div>
+
         <div class="header text-center">
             <h1 class="display-5 fw-bold mb-3">املئ البيانات ثم ارفع ملفك</h1>
             <div class="subject-badge">
@@ -875,8 +943,8 @@
                                         <div class="flex-grow-1">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div>
-                                                    <div id="file-name" class="fw-bold h6 mb-1"></div>
-                                                    <div id="file-size" class="text-muted small mb-2"></div>
+                                                    <div id="file-name" class="file-name mb-1"></div>
+                                                    <div id="file-size" class="file-size small mb-2"></div>
                                                     <span id="file-type-badge" class="file-type-badge"></span>
                                                 </div>
                                                 <button type="button" class="btn btn-sm btn-danger" onclick="removeFile()">
@@ -972,6 +1040,8 @@
                 clearFormData();
             }
             
+            checkNotification();
+            
             document.getElementById('teacher-form').addEventListener('submit', handleTeacherSubmit);
             document.getElementById('teacher-name').addEventListener('input', checkNameAvailability);
             document.getElementById('upload-form').addEventListener('submit', handleFileUpload);
@@ -1003,7 +1073,38 @@
             document.getElementById('copy-link-btn').addEventListener('click', copyLink);
             
             setupTooltips();
+            setupValidation();
         });
+
+        function checkNotification() {
+            database.ref('noty').once('value')
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    const notyData = snapshot.val();
+                    if (notyData.active === true) {
+                        showNotification(notyData.message, notyData.link);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error checking notification:', error);
+            });
+        }
+
+        function showNotification(message, link) {
+            const adminBanner = document.getElementById('notification-banner');
+            const uploadBanner = document.getElementById('upload-notification-banner');
+            
+            const bannerHTML = link ? 
+                `<p>${message} <a href="${link}" target="_blank">اضغط هنا</a></p>` :
+                `<p>${message}</p>`;
+            
+            adminBanner.innerHTML = bannerHTML;
+            uploadBanner.innerHTML = bannerHTML;
+            
+            adminBanner.classList.remove('hidden');
+            uploadBanner.classList.remove('hidden');
+        }
 
         function clearFormData() {
             document.getElementById('teacher-form').reset();
@@ -1012,11 +1113,31 @@
             document.getElementById('success-message').classList.add('hidden');
         }
 
+        function setupValidation() {
+            const inputs = document.querySelectorAll('#teacher-form input, #upload-form input, #upload-form textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('error');
+                        this.classList.add('success');
+                    } else {
+                        this.classList.remove('success');
+                        this.classList.add('error');
+                    }
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.checkValidity()) {
+                        this.classList.add('error');
+                    }
+                });
+            });
+        }
+
         function setupTooltips() {
             const tokenHelpBtn = document.getElementById('token-help-btn');
             const idHelpBtn = document.getElementById('id-help-btn');
-            const tokenLinkBtn = document.getElementById('token-link-btn');
-            const idLinkBtn = document.getElementById('id-link-btn');
             
             if (firstTimeVisit) {
                 createTooltip(tokenHelpBtn, 'اضغط هنا لمشاهدة كيفية انشاء بوت تليجرام والحصول على توكنه', true);
@@ -1043,36 +1164,12 @@
                 removeTooltip();
             });
             
-            tokenLinkBtn.addEventListener('mouseenter', () => {
-                createTooltip(tokenLinkBtn, 'اضغط للانتقال الي BotFather');
-            });
-            
-            tokenLinkBtn.addEventListener('mouseleave', () => {
-                removeTooltip();
-            });
-            
-            idLinkBtn.addEventListener('mouseenter', () => {
-                createTooltip(idLinkBtn, 'اضغط للانتقال الي ID Bot');
-            });
-            
-            idLinkBtn.addEventListener('mouseleave', () => {
-                removeTooltip();
-            });
-            
             tokenHelpBtn.addEventListener('click', () => {
                 window.open('https://youtube.com/shorts/uSQqCS_lwKw?si=JEicdIMKeHpr4XTE', '_blank');
             });
             
             idHelpBtn.addEventListener('click', () => {
                 window.open('https://youtube.com/shorts/XiyVuGeaFKw?si=JvLWYOpTXWm0BZlo', '_blank');
-            });
-            
-            tokenLinkBtn.addEventListener('click', () => {
-                window.open('https://t.me/BotFather', '_blank');
-            });
-            
-            idLinkBtn.addEventListener('click', () => {
-                window.open('https://t.me/I_D1_bot', '_blank');
             });
         }
 
@@ -1120,9 +1217,11 @@
         function checkNameAvailability() {
             const teacherName = document.getElementById('teacher-name').value;
             const nameError = document.getElementById('name-error');
+            const nameInput = document.getElementById('teacher-name');
             
             if (teacherName.length < 3) {
                 nameError.classList.add('hidden');
+                nameInput.classList.remove('error', 'success');
                 return;
             }
             
@@ -1130,8 +1229,12 @@
             .then(snapshot => {
                 if (snapshot.exists()) {
                     nameError.classList.remove('hidden');
+                    nameInput.classList.add('error');
+                    nameInput.classList.remove('success');
                 } else {
                     nameError.classList.add('hidden');
+                    nameInput.classList.remove('error');
+                    nameInput.classList.add('success');
                 }
             })
             .catch(error => {
@@ -1163,7 +1266,19 @@
         }
         
         function testBot(botToken, teacherId, teacherName, teacherSubject) {
-            const message = `✅ تم ربط البوت بنجاح!\n\nاسم الادمن: ${teacherName}\nالمادة: ${teacherSubject}\n\nيمكنك الآن استقبال ملفات الطلاب.`;
+            const teacherLink = `${window.location.origin}${window.location.pathname}?teacher=${teacherName}`;
+            
+            const message = `🔻𝕎𝕖𝕝𝕔𝕠𝕞𝕖 𝐀𝐃𝐌𝐈𝐍🔻
+╭───────────────────╮
+├•◆ 𝐀𝐝 𝐍𝐚𝐦𝐞 : ${teacherName}
+├•◆ 𝐀𝐝 𝐈𝐝 : <code>${teacherId}</code>
+╰───────────────────╯
+╭──────────────────────────╮
+├•◆ 𝗬𝗼𝘂𝗿 𝗕𝗼𝘁 𝗛𝗮𝘀 𝗕𝗲𝗲𝗻 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗔𝗰𝘁𝗶𝘃𝗮𝘁𝗲𝗱✅
+╰──────────────────────────╯
+⚙️ رابط الصفحة : ${teacherLink}
+
+يمكنك مشاركة هذا الرابط و استقبال الملفات منه`;
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
@@ -1172,7 +1287,8 @@
                 },
                 body: JSON.stringify({
                     chat_id: teacherId,
-                    text: message
+                    text: message,
+                    parse_mode: 'HTML'
                 })
             })
             .then(response => response.json())
@@ -1311,9 +1427,7 @@
                 if (file.type.startsWith('image/')) {
                     const img = document.createElement('img');
                     img.src = URL.createObjectURL(file);
-                    img.style.maxWidth = '80px';
-                    img.style.maxHeight = '80px';
-                    img.style.borderRadius = '10px';
+                    img.className = 'file-preview-img';
                     img.onload = () => URL.revokeObjectURL(img.src);
                     previewElement.appendChild(img);
                 } else {
@@ -1605,7 +1719,6 @@ ${uploadData.studentComment ? `تعليق الطالب: ${uploadData.studentComm
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>ipt>
 </body>
 </html>
